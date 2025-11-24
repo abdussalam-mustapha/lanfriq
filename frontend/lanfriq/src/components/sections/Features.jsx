@@ -16,24 +16,24 @@ const Features = () => {
       description: 'Tokens represent real, legal ownership secured by a certified SPV.'
     },
     {
-      image: transparentValuation,
-      title: 'Transparent Valuation',
-      description: 'Professional valuers ensure investors always know true asset value.'
-    },
-    {
       image: fractionalInvesting,
       title: 'Fractional Investing',
       description: 'Get real estate exposure with low entry amounts.'
     },
     {
-      image: nftOwnershipReceipt,
-      title: 'NFT Ownership Receipts',
-      description: 'Instant, tamper-proof, and transferable proof of investment.'
-    },
-    {
       image: earnFromRealProperties,
       title: 'Earn From Real Properties',
       description: 'Get rental income and appreciation returns automatically.'
+    },
+    {
+      image: transparentValuation,
+      title: 'Transparent Valuation',
+      description: 'Professional valuers ensure investors always know true asset value.'
+    },
+    {
+      image: nftOwnershipReceipt,
+      title: 'NFT Ownership Receipts',
+      description: 'Instant, tamper-proof, and transferable proof of investment.'
     },
     {
       image: secureVerificationWorkflow,
@@ -43,7 +43,7 @@ const Features = () => {
   ]
 
   return (
-    <Section id="benefits" variant="alt" className="features">
+    <Section id="benefits" variant="default" className="features">
       <div className="features__header">
         <div className="features__label">
           <span className="features__label-line"></span>
@@ -55,13 +55,13 @@ const Features = () => {
       
       <div className="features__grid">
         {features.map((feature, index) => (
-          <Card key={index} variant="feature" className="feature-card">
+          <div key={index} className="feature-card">
             <div className="feature-card__image">
               <img src={feature.image} alt={feature.title} />
             </div>
             <h3 className="feature-card__title">{feature.title}</h3>
             <p className="feature-card__description">{feature.description}</p>
-          </Card>
+          </div>
         ))}
       </div>
     </Section>
