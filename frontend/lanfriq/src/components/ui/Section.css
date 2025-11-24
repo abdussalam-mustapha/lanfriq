@@ -1,0 +1,40 @@
+.section {
+  padding: var(--spacing-3xl) 0;
+}
+
+.section--default {
+  background-color: var(--color-background);
+}
+
+.section--alt {
+  background-color: var(--color-background-alt);
+}
+
+.section--hero {
+  padding: var(--spacing-2xl) 0 var(--spacing-3xl);
+  position: relative;
+  overflow: hidden;
+}
+
+.section--compact {
+  padding: var(--spacing-2xl) 0;
+}
+
+.section--stats {
+  background-color: var(--color-background-alt);
+  padding: var(--spacing-3xl) 0;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: var(--spacing-2xl) 0;
+  }
+  
+  .section--hero {
+    padding: var(--spacing-lg) 0 var(--spacing-2xl);
+  }
+  
+  .section--compact {
+    padding: var(--spacing-lg) 0;
+  }
+}

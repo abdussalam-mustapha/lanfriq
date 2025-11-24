@@ -1,0 +1,112 @@
+.features {
+  background-color: var(--color-background-alt);
+}
+
+.features__header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.features__label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+.features__label-line {
+  width: 196px;
+  height: 1px;
+  border: 1px solid var(--color-text-primary);
+}
+
+.features__label-text {
+  font-family: var(--font-poppins);
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--color-text-secondary);
+}
+
+.features__title {
+  font-family: var(--font-outfit);
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 48px;
+  color: var(--color-text-primary);
+}
+
+.features__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.feature-card {
+  transition: all var(--transition-base);
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+}
+
+.feature-card__image {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--spacing-md);
+  background-color: var(--color-background);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+}
+
+.feature-card__image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.feature-card__title {
+  font-family: var(--font-outfit);
+  font-size: 25px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.feature-card__description {
+  font-family: var(--font-outfit);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16.80px;
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 1024px) {
+  .features__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .features__label-line {
+    width: 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  .features__grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+  
+  .feature-card__image {
+    height: 160px;
+  }
+  
+  .features__label-line {
+    width: 50px;
+  }
+}
