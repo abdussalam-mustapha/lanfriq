@@ -1,18 +1,26 @@
 import { X, Instagram, Facebook, Linkedin, Youtube } from 'lucide-react'
 import { IconBrandDiscord } from '@tabler/icons-react'
+import { useTheme } from '../../context/ThemeContext'
+import logo from '../../assets/LanfriqLogoFooter.png'
+import watermarkLight from '../../assets/lanfriqWatermarkLight.png'
+import watermarkDark from '../../assets/LanfriqWatermarkDark.png'
 import './Footer.css'
 
 const Footer = () => {
+  const { theme } = useTheme()
   const currentYear = new Date().getFullYear()
+  const watermark = theme === 'light' ? watermarkLight : watermarkDark
 
   return (
     <footer className="footer">
       <div className="container">
-        <div className="footer__watermark">LANFRIQ</div>
+        <div className="footer__watermark">
+          <img src={watermark} alt="Lanfriq" />
+        </div>
         
         <div className="footer__content">
           <div className="footer__brand">
-            <div className="footer__brand-circle"></div>
+            <img src={logo} alt="Lanfriq Logo" className="footer__logo" />
             <p className="footer__tagline">
               Invest in Real Estate, One Token at a Time.
             </p>
@@ -62,7 +70,7 @@ const Footer = () => {
 
         <div className="footer__bottom">
           <div className="footer__bottom-left">
-            <div className="footer__bottom-circle"></div>
+            <img src={logo} alt="Lanfriq Logo" className="footer__logo-small" />
             <p className="footer__copyright">
               © {currentYear} Lanfriq. All rights reserved
             </p>
