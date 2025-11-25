@@ -118,15 +118,23 @@
   font-size: 16px;
   font-weight: 400;
   color: #000000;
-  background-color: transparent;
-  border: none;
-  padding: 0;
+  background-color: #8CC043;
+  border: 1px solid #8CC043;
+  border-radius: 5px;
+  padding: 11px 41px;
   cursor: pointer;
-  transition: color var(--transition-fast);
+  transition: all var(--transition-fast);
+  width: 186px;
+  height: 45px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 .btn--cta:hover {
-  color: var(--color-primary);
+  background-color: #7FB519;
+  border-color: #7FB519;
 }
 
 @media (max-width: 968px) {

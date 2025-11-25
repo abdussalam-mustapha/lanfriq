@@ -4,9 +4,14 @@ import Section from '../ui/Section'
 import investorImg from '../../assets/WhoIsItForInvestor.png'
 import propertyOwnerImg from '../../assets/whoIsItForPropertyOwner.png'
 import businessImg from '../../assets/WhoIsItForBusinessAndFirms.png'
+import professionalSurveyLight from '../../assets/professionalSurveyLight.png'
+import professionalSurveyDark from '../../assets/professionalSurveyDark.png'
 import './TargetAudience.css'
 
 const TargetAudience = () => {
+  const { theme } = useTheme()
+  const professionalSurveyImg = theme === 'light' ? professionalSurveyLight : professionalSurveyDark
+
   return (
     <>
       {/* Section Header */}
@@ -23,7 +28,7 @@ const TargetAudience = () => {
 
       {/* Investors Section */}
       <Section id="investors" variant="default" className="audience-section">
-        <div className="audience-section__content audience-section__content--reverse">
+        <div className="audience-section__content">
           <div className="audience-section__image">
             <img src={investorImg} alt="Investors" />
           </div>
@@ -44,7 +49,7 @@ const TargetAudience = () => {
       </Section>
 
       {/* Property Owners Section */}
-      <Section id="property-owners" variant="alt" className="audience-section">
+      <Section id="property-owners" variant="default" className="audience-section">
         <div className="audience-section__content">
           <div className="audience-section__text">
             <h2 className="audience-section__title">Property Owners</h2>
@@ -67,7 +72,7 @@ const TargetAudience = () => {
 
       {/* Businesses & Firms Section */}
       <Section id="businesses" variant="default" className="audience-section">
-        <div className="audience-section__content audience-section__content--reverse">
+        <div className="audience-section__content">
           <div className="audience-section__image">
             <img src={businessImg} alt="Businesses and Firms" />
           </div>
@@ -83,6 +88,28 @@ const TargetAudience = () => {
               <li><CheckCheck size={16} strokeWidth={2} color="var(--color-primary)" /><span>Manage stakeholder voting via smart contracts.</span></li>
             </ul>
             <button className="btn btn--cta">Partner With Us</button>
+          </div>
+        </div>
+      </Section>
+
+      {/* Professional Survey Section */}
+      <Section id="professional-survey" variant="default" className="audience-section">
+        <div className="audience-section__content">
+          <div className="audience-section__text">
+            <h2 className="audience-section__title">Professional Survey</h2>
+            <p className="audience-section__description">
+              Expert property valuations and verification. Our certified surveyors conduct comprehensive assessments to ensure accurate property valuation, compliance verification, and investment security for all stakeholders.
+            </p>
+            <ul className="audience-section__features">
+              <li><CheckCheck size={16} strokeWidth={2} color="var(--color-primary)" /><span>Certified professional surveyors.</span></li>
+              <li><CheckCheck size={16} strokeWidth={2} color="var(--color-primary)" /><span>Comprehensive property assessment reports.</span></li>
+              <li><CheckCheck size={16} strokeWidth={2} color="var(--color-primary)" /><span>Legal compliance verification.</span></li>
+              <li><CheckCheck size={16} strokeWidth={2} color="var(--color-primary)" /><span>Real-time valuation updates.</span></li>
+            </ul>
+            <button className="btn btn--cta">Join Us</button>
+          </div>
+          <div className="audience-section__image">
+            <img src={professionalSurveyImg} alt="Professional Survey" />
           </div>
         </div>
       </Section>
