@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useTheme } from '../../context/ThemeContext'
-import { ChevronDown, Wallet, Bell, Menu, X } from 'lucide-react'
-import WalletConnectModal from '../modals/WalletConnectModal'
+import { ChevronDown, Bell, Menu, X } from 'lucide-react'
 import logo from '../../assets/logo.png'
 import logoWhite from '../../assets/lanfriqnavlogowhite.png'
 import './Header.css'
@@ -12,7 +12,6 @@ const Header = () => {
   const location = useLocation()
   const [isUseCaseOpen, setIsUseCaseOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [isWalletModalOpen, setIsWalletModalOpen] = useState(false)
   const currentLogo = theme === 'dark' ? logoWhite : logo
   const isLandingPage = location.pathname === '/'
 
@@ -88,10 +87,9 @@ const Header = () => {
                   </svg>
                 )}
               </button>
-              <Link to="/marketplace" className="btn btn--connect-wallet" onClick={(e) => { e.preventDefault(); setIsWalletModalOpen(true); }}>
-                <Wallet size={20} strokeWidth={2} />
-                <span>Connect Wallet</span>
-              </Link>
+              <div className="nav__connect-wallet">
+                <ConnectButton />
+              </div>
             </div>
           </nav>
           
@@ -104,17 +102,14 @@ const Header = () => {
                 <a href="#property-owners" className="nav__mobile-link" onClick={() => setIsMobileMenuOpen(false)}>Property Owners</a>
                 <a href="#businesses" className="nav__mobile-link" onClick={() => setIsMobileMenuOpen(false)}>Business/Firm</a>
                 <a href="#how-it-works" className="nav__mobile-link" onClick={() => setIsMobileMenuOpen(false)}>How It Works</a>
-                <button className="btn btn--primary" style={{ marginTop: '20px' }} onClick={() => { setIsMobileMenuOpen(false); setIsWalletModalOpen(true); }}>
-                  Connect Wallet
-                </button>
+                <div style={{ marginTop: '20px' }}>
+                  <ConnectButton />
+                </div>
               </nav>
             </div>
           )}
         </div>
       </header>
-      
-      {/* Wallet Connect Modal */}
-      <WalletConnectModal isOpen={isWalletModalOpen} onClose={() => setIsWalletModalOpen(false)} />
       </>
     )
   }
@@ -175,36 +170,35 @@ const Header = () => {
                   <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                 </svg>
               )}
-            </button>
-            <button className="btn btn--connect-wallet" onClick={() => setIsWalletModalOpen(true)}>
-              <Wallet size={20} strokeWidth={2} />
-              <span>Connect Wallet</span>
-            </button>
-          </div>
-        </nav>
-        
-        {/* Mobile Menu Overlay */}
-        {isMobileMenuOpen && (
-          <div className="nav__mobile-overlay">
-            <nav className="nav__mobile-menu">
-              {navLinks.map((link) => (
-                <Link 
-                  key={link.path}
-                  to={link.path} 
-                  className="nav__mobile-link"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
-          </div>
-        )}
-      </div>
-    </header>
-    
-    {/* Wallet Connect Modal */}
-    <WalletConnectModal isOpen={isWalletModalOpen} onClose={() => setIsWalletModalOpen(false)} />
+              </button>
+              <div className="nav__connect-wallet">
+                <ConnectButton />
+              </div>
+            </div>
+          </nav>
+          
+          {/* Mobile Menu Overlay */}
+          {isMobileMenuOpen && (
+            <div className="nav__mobile-overlay">
+              <nav className="nav__mobile-menu">
+                {navLinks.map((link) => (
+                  <Link 
+                    key={link.path}
+                    to={link.path} 
+                    className="nav__mobile-link"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+                <div style={{ marginTop: '20px' }}>
+                  <ConnectButton />
+                </div>
+              </nav>
+            </div>
+          )}
+        </div>
+      </header>
     </>
   )
 }
