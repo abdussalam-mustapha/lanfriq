@@ -638,17 +638,6 @@
 
 [data-theme="light"] .wallet__swap-divider {
   background: rgba(0, 0, 0, 0.1);
-} color: var(--text-primary);
-  font-size: 0.9375rem;
-  font-weight: 600;
-  cursor: pointer;
-  outline: none;
-}
-
-.wallet__swap-divider {
-  width: 1px;
-  height: 24px;
-  background: rgba(255, 255, 255, 0.1);
 }
 
 .wallet__swap-right {
