@@ -2,6 +2,15 @@
   display: flex;
   min-height: 100vh;
   background-color: var(--background);
+  transition: background-color 0.3s ease;
+}
+
+[data-theme="dark"] .app-layout {
+  background-color: #000000;
+}
+
+[data-theme="light"] .app-layout {
+  background-color: #f8f8f8;
 }
 
 .app-layout__main {
@@ -15,13 +24,25 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  background-color: rgba(26, 26, 26, 0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: var(--background);
+  border-bottom: 1px solid var(--color-border, rgba(0, 0, 0, 0.08));
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .app-layout__header {
+  background-color: rgba(26, 26, 26, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="light"] .app-layout__header {
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom-color: rgba(0, 0, 0, 0.08);
 }
 
 .app-layout__header-left {
@@ -71,9 +92,17 @@
   transition: all 0.2s ease;
 }
 
+[data-theme="light"] .app-layout__icon-btn {
+  background: rgba(0, 0, 0, 0.05);
+}
+
 .app-layout__icon-btn:hover {
   background: rgba(255, 255, 255, 0.1);
   color: var(--text-primary);
+}
+
+[data-theme="light"] .app-layout__icon-btn:hover {
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .app-layout__notification-btn {

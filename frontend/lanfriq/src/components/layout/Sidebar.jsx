@@ -1,9 +1,13 @@
 import { NavLink } from 'react-router-dom'
 import { Store, Home, Package, Tag, Heart, User, Bell } from 'lucide-react'
+import { useTheme } from '../../context/ThemeContext'
 import logo from '../../assets/logo.png'
+import logoWhite from '../../assets/lanfriqnavlogowhite.png'
 import './Sidebar.css'
 
 const Sidebar = () => {
+  const { theme } = useTheme()
+  
   const navItems = [
     { path: '/marketplace', icon: Store, label: 'Market' }
   ]
@@ -11,7 +15,7 @@ const Sidebar = () => {
   return (
     <aside className="sidebar">
       <div className="sidebar__logo">
-        <img src={logo} alt="Lanfriq" />
+        <img src={theme === 'dark' ? logoWhite : logo} alt="Lanfriq" />
       </div>
       
       <nav className="sidebar__nav">
