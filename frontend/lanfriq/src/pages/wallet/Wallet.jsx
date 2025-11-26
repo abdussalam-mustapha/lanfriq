@@ -29,18 +29,6 @@ const Wallet = () => {
 
   const renderSendTab = () => (
     <div className="wallet__tab-content">
-      <div className="wallet__balance-card">
-        <div className="wallet__balance-icon">
-          <WalletIcon size={40} />
-        </div>
-        <p className="wallet__balance-label">Your total balance</p>
-        <h2 className="wallet__balance-amount">$13,124,100.55</h2>
-        <div className="wallet__balance-change">
-          <span className="wallet__balance-token">1000.01 ETH</span>
-          <span className="wallet__balance-percentage">+2.0%</span>
-        </div>
-      </div>
-
       <div className="wallet__form">
         <div className="wallet__form-group">
           <label>Wallet Address</label>
@@ -93,18 +81,6 @@ const Wallet = () => {
 
   const renderSwapTab = () => (
     <div className="wallet__tab-content">
-      <div className="wallet__balance-card">
-        <div className="wallet__balance-icon">
-          <WalletIcon size={40} />
-        </div>
-        <p className="wallet__balance-label">Your total balance</p>
-        <h2 className="wallet__balance-amount">$13,124,100.55</h2>
-        <div className="wallet__balance-change">
-          <span className="wallet__balance-token">1000.01 ETH</span>
-          <span className="wallet__balance-percentage">+2.0%</span>
-        </div>
-      </div>
-
       <div className="wallet__form">
         <div className="wallet__swap-section">
           <label>From</label>
@@ -160,18 +136,6 @@ const Wallet = () => {
 
   const renderReceiveTab = () => (
     <div className="wallet__tab-content">
-      <div className="wallet__balance-card">
-        <div className="wallet__balance-icon">
-          <WalletIcon size={40} />
-        </div>
-        <p className="wallet__balance-label">Your total balance</p>
-        <h2 className="wallet__balance-amount">$13,124,100.55</h2>
-        <div className="wallet__balance-change">
-          <span className="wallet__balance-token">1000.01 ETH</span>
-          <span className="wallet__balance-percentage">+2.0%</span>
-        </div>
-      </div>
-
       <div className="wallet__form">
         <div className="wallet__form-group">
           <label>Amount</label>
@@ -313,6 +277,18 @@ const Wallet = () => {
         </div>
 
         <div className="wallet__right">
+          <div className="wallet__balance-card">
+            <div className="wallet__balance-icon">
+              <WalletIcon size={40} />
+            </div>
+            <p className="wallet__balance-label">Your total balance</p>
+            <h2 className="wallet__balance-amount">$13,124,100.55</h2>
+            <div className="wallet__balance-change">
+              <span className="wallet__balance-token">1000.01 ETH</span>
+              <span className="wallet__balance-percentage">+2.0%</span>
+            </div>
+          </div>
+
           <div className="wallet__tabs">
             <button 
               className={`wallet__tab ${activeTab === 'send' ? 'wallet__tab--active' : ''}`}

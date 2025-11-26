@@ -304,53 +304,20 @@
   position: sticky;
   top: 100px;
   align-self: flex-start;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  overflow: hidden;
-}
-
-.wallet__tabs {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  background: rgba(0, 0, 0, 0.2);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.wallet__tab {
-  background: none;
-  border: none;
-  color: var(--text-secondary);
-  font-size: 0.9375rem;
-  font-weight: 500;
-  padding: 1rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  border-bottom: 2px solid transparent;
-}
-
-.wallet__tab:hover {
-  background: rgba(255, 255, 255, 0.03);
-}
-
-.wallet__tab--active {
-  color: var(--text-primary);
-  background: rgba(140, 192, 67, 0.05);
-  border-bottom-color: #8cc043;
-}
-
-.wallet__tab-content {
-  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
 .wallet__balance-card {
   background: linear-gradient(135deg, rgba(140, 192, 67, 0.1) 0%, rgba(140, 192, 67, 0.05) 100%);
-  border-radius: 16px;
+  border-radius: 16px 16px 0 0;
   padding: 2rem;
   text-align: center;
-  margin-bottom: 2rem;
   position: relative;
   overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: none;
 }
 
 .wallet__balance-card::before {
@@ -404,6 +371,45 @@
 .wallet__balance-percentage {
   color: #8cc043;
   font-weight: 600;
+}
+
+.wallet__tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: none;
+  border-bottom: none;
+}
+
+.wallet__tab {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-bottom: 2px solid transparent;
+}
+
+.wallet__tab:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.wallet__tab--active {
+  color: var(--text-primary);
+  background: rgba(140, 192, 67, 0.05);
+  border-bottom-color: #8cc043;
+}
+
+.wallet__tab-content {
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: none;
+  border-radius: 0 0 16px 16px;
 }
 
 .wallet__form {
