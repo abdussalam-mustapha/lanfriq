@@ -68,10 +68,11 @@ const Wallet = () => {
             value={sendData.amount}
             onChange={(e) => setSendData({...sendData, amount: e.target.value})}
           />
-          <div className="wallet__form-footer">
-            <span>Tokhat ~</span>
-            <span>$1,489.00</span>
-          </div>
+        </div>
+
+        <div className="wallet__form-footer">
+          <span>Tokhat ~</span>
+          <span>$1,489.00</span>
         </div>
 
         <button className="wallet__submit-btn">Send Now</button>

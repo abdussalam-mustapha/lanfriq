@@ -211,19 +211,15 @@
 [data-theme="light"] .wallet__transactions {
   background: rgba(0, 0, 0, 0.02);
   border: 1px solid rgba(0, 0, 0, 0.08);
-} border-radius: 12px;
-  font-weight: 600;
-}
-
-.wallet__transactions {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  padding: 1.5rem;
 }
 
 .wallet__transactions-header {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
 .wallet__transactions-header h3 {
   font-size: 1.125rem;
   font-weight: 600;
@@ -526,6 +522,11 @@
   font-size: 0.875rem;
   color: var(--text-secondary);
   font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+[data-theme="light"] .wallet__form-group label {
+  color: rgba(0, 0, 0, 0.7);
 }
 
 .wallet__form-group input,
@@ -555,7 +556,20 @@
   justify-content: space-between;
   font-size: 0.875rem;
   color: var(--text-secondary);
-  margin-top: 0.5rem;
+  padding: 0.75rem 0;
+}
+
+[data-theme="light"] .wallet__form-footer {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.wallet__form-footer span:last-child {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .wallet__form-footer span:last-child {
+  color: #000000;
 }
 
 .wallet__submit-btn {
