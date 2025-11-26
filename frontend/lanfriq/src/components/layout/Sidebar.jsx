@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { Store, Home, Package, Tag, Heart, User, Bell } from 'lucide-react'
+import { Store, Wallet, Tag, Home, Package, Heart, User, Bell, Settings, HelpCircle } from 'lucide-react'
 import { useTheme } from '../../context/ThemeContext'
 import logo from '../../assets/logo.png'
 import logoWhite from '../../assets/lanfriqnavlogowhite.png'
@@ -12,7 +12,9 @@ const Sidebar = () => {
     {
       title: 'Actions',
       items: [
-        { path: '/marketplace', icon: Store, label: 'Market' }
+        { path: '/marketplace', icon: Store, label: 'Market' },
+        { path: '/wallet', icon: Wallet, label: 'Wallet' },
+        { path: '/offers', icon: Tag, label: 'Offer' }
       ]
     },
     {
@@ -20,7 +22,6 @@ const Sidebar = () => {
       items: [
         { path: '/tokenization-hub', icon: Package, label: 'Tokenization Hub' },
         { path: '/my-assets', icon: Home, label: 'My Assets' },
-        { path: '/offers', icon: Tag, label: 'Offers' },
         { path: '/favorites', icon: Heart, label: 'Favorites' }
       ]
     },
@@ -28,7 +29,9 @@ const Sidebar = () => {
       title: 'Resources',
       items: [
         { path: '/profile', icon: User, label: 'Profile' },
-        { path: '/notifications', icon: Bell, label: 'Notifications' }
+        { path: '/notifications', icon: Bell, label: 'Notifications' },
+        { path: '/settings', icon: Settings, label: 'Settings' },
+        { path: '/support', icon: HelpCircle, label: 'Support/Help' }
       ]
     }
   ]
