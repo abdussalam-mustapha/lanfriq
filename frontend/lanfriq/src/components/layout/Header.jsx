@@ -90,7 +90,7 @@ const Header = () => {
               </button>
               <Link to="/marketplace" className="btn btn--connect-wallet" onClick={(e) => { e.preventDefault(); setIsWalletModalOpen(true); }}>
                 <Wallet size={20} strokeWidth={2} />
-                <span>Get Started</span>
+                <span>Connect Wallet</span>
               </Link>
             </div>
           </nav>
@@ -105,7 +105,7 @@ const Header = () => {
                 <a href="#businesses" className="nav__mobile-link" onClick={() => setIsMobileMenuOpen(false)}>Business/Firm</a>
                 <a href="#how-it-works" className="nav__mobile-link" onClick={() => setIsMobileMenuOpen(false)}>How It Works</a>
                 <button className="btn btn--primary" style={{ marginTop: '20px' }} onClick={() => { setIsMobileMenuOpen(false); setIsWalletModalOpen(true); }}>
-                  Get Started
+                  Connect Wallet
                 </button>
               </nav>
             </div>
