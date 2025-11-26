@@ -117,8 +117,11 @@ const Wallet = () => {
                 <option value="ETH">ETH</option>
               </select>
             </div>
-            <input type="text" value={swapData.fromAmount} onChange={(e) => setSwapData({...swapData, fromAmount: e.target.value})} />
-            <span className="wallet__swap-amount">10,000.00</span>
+            <div className="wallet__swap-divider"></div>
+            <div className="wallet__swap-right">
+              <input type="text" placeholder="Amount" value={swapData.fromAmount} onChange={(e) => setSwapData({...swapData, fromAmount: e.target.value})} />
+              <span className="wallet__swap-amount">10,000.00</span>
+            </div>
           </div>
         </div>
 
@@ -137,8 +140,11 @@ const Wallet = () => {
                 <option value="ETH">ETH</option>
               </select>
             </div>
-            <input type="text" value={swapData.toAmount} onChange={(e) => setSwapData({...swapData, toAmount: e.target.value})} />
-            <span className="wallet__swap-amount">10,000.00</span>
+            <div className="wallet__swap-divider"></div>
+            <div className="wallet__swap-right">
+              <input type="text" placeholder="Amount" value={swapData.toAmount} onChange={(e) => setSwapData({...swapData, toAmount: e.target.value})} />
+              <span className="wallet__swap-amount">10,000.00</span>
+            </div>
           </div>
         </div>
 

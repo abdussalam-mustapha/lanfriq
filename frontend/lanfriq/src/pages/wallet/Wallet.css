@@ -499,6 +499,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  min-width: 100px;
 }
 
 .wallet__network-dot {
@@ -518,7 +519,21 @@
   outline: none;
 }
 
-.wallet__swap-input input {
+.wallet__swap-divider {
+  width: 1px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.wallet__swap-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.wallet__swap-right input {
   flex: 1;
   background: none;
   border: none;
@@ -530,8 +545,9 @@
 
 .wallet__swap-amount {
   font-size: 0.875rem;
-  color: var(--text-secondary);
+  color: var(--text-primary);
   white-space: nowrap;
+  font-weight: 500;
 }
 
 .wallet__swap-toggle {
