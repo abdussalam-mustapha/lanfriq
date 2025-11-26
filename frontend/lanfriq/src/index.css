@@ -41,9 +41,8 @@
   --container-padding: 2rem;
 }
 
-/* Light Theme (Default) */
-:root[data-theme="light"],
-:root {
+/* Light Theme */
+:root[data-theme="light"] {
   --color-primary: #8cc043;
   --color-primary-hover: #678d31;
   --color-primary-light: #E8F5D5;
@@ -70,8 +69,9 @@
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
 }
 
-/* Dark Theme */
-:root[data-theme="dark"] {
+/* Dark Theme (Default) */
+:root[data-theme="dark"],
+:root {
   --color-primary: #8cc043;
   --color-primary-hover: #8FC624;
   --color-primary-light: #2D3A1A;
