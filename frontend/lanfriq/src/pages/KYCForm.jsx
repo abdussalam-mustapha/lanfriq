@@ -235,7 +235,7 @@ const KYCForm = () => {
               accept="image/*"
             />
             <label htmlFor="idFront" className="kyc-form__upload-area">
-              <Upload size={24} />
+              <Upload size={28} strokeWidth={1.5} />
               <p>
                 Drag and drop to upload files or <span className="kyc-form__upload-link">browse</span>
               </p>
@@ -257,7 +257,7 @@ const KYCForm = () => {
               accept="image/*"
             />
             <label htmlFor="idBack" className="kyc-form__upload-area">
-              <Upload size={24} />
+              <Upload size={28} strokeWidth={1.5} />
               <p>
                 Drag and drop to upload files or <span className="kyc-form__upload-link">browse</span>
               </p>
@@ -305,7 +305,7 @@ const KYCForm = () => {
               accept="image/*,application/pdf"
             />
             <label htmlFor="utilityBillFile" className="kyc-form__upload-area">
-              <Upload size={24} />
+              <Upload size={28} strokeWidth={1.5} />
               <p>
                 Drag and drop to upload files or <span className="kyc-form__upload-link">browse</span>
               </p>

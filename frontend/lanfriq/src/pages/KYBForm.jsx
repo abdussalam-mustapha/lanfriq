@@ -171,7 +171,7 @@ const KYBForm = () => {
               accept="image/*,application/pdf"
             />
             <label htmlFor="businessCertificate" className="kyb-form__upload-area">
-              <Upload size={24} />
+              <Upload size={28} strokeWidth={1.5} />
               <p>
                 Drag and drop to upload files or <span className="kyb-form__upload-link">browse</span>
               </p>
@@ -361,7 +361,7 @@ const KYBForm = () => {
                   accept="image/*,application/pdf"
                 />
                 <label htmlFor={`directorId-${director.id}`} className="kyb-form__upload-area">
-                  <Upload size={24} />
+                  <Upload size={28} strokeWidth={1.5} />
                   <p>
                     Drag and drop to upload files or <span className="kyb-form__upload-link">browse</span>
                   </p>
@@ -398,7 +398,7 @@ const KYBForm = () => {
               accept="image/*,application/pdf"
             />
             <label htmlFor="incorporationCert" className="kyb-form__upload-area">
-              <Upload size={24} />
+              <Upload size={28} strokeWidth={1.5} />
               <p>
                 Drag and drop to upload files or <span className="kyb-form__upload-link">browse</span>
               </p>
@@ -420,7 +420,7 @@ const KYBForm = () => {
               accept="image/*,application/pdf"
             />
             <label htmlFor="memorandum" className="kyb-form__upload-area">
-              <Upload size={24} />
+              <Upload size={28} strokeWidth={1.5} />
               <p>
                 Drag and drop to upload files or <span className="kyb-form__upload-link">browse</span>
               </p>
@@ -442,7 +442,7 @@ const KYBForm = () => {
               accept="image/*,application/pdf"
             />
             <label htmlFor="bankStatement" className="kyb-form__upload-area">
-              <Upload size={24} />
+              <Upload size={28} strokeWidth={1.5} />
               <p>
                 Drag and drop to upload files or <span className="kyb-form__upload-link">browse</span>
               </p>
