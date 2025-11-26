@@ -56,7 +56,7 @@
 
 .wallet__stat-card {
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   padding: 1.5rem;
   position: relative;
@@ -84,7 +84,7 @@
 
 .wallet__chart-section {
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   padding: 1.5rem;
 }
@@ -180,7 +180,7 @@
 
 .wallet__transactions {
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   padding: 1.5rem;
 }
@@ -201,7 +201,7 @@
 
 .wallet__transactions-search {
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   padding: 0.5rem 1rem;
   color: var(--text-secondary);
@@ -306,18 +306,17 @@
   align-self: flex-start;
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 1.5rem;
 }
 
 .wallet__balance-card {
   background: linear-gradient(135deg, rgba(140, 192, 67, 0.1) 0%, rgba(140, 192, 67, 0.05) 100%);
-  border-radius: 16px 16px 0 0;
+  border-radius: 16px;
   padding: 2rem;
   text-align: center;
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-bottom: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .wallet__balance-card::before {
@@ -377,9 +376,9 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   background: rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-top: none;
-  border-bottom: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px 16px 0 0;
+  overflow: hidden;
 }
 
 .wallet__tab {
@@ -407,7 +406,7 @@
 .wallet__tab-content {
   padding: 2rem;
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-top: none;
   border-radius: 0 0 16px 16px;
 }
