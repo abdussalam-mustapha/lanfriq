@@ -9,6 +9,7 @@ import Marketplace from '../pages/marketplace/Marketplace'
 import PropertyDetails from '../pages/marketplace/PropertyDetails'
 import TokenizationHub from '../pages/tokenization-hub/TokenizationHub'
 import MyAssets from '../pages/assets/MyAssets'
+import AssetDetails from '../pages/assets/AssetDetails'
 import Offers from '../pages/offers/Offers'
 import Favorites from '../pages/favorites/Favorites'
 import Profile from '../pages/profile/Profile'
@@ -33,8 +34,9 @@ const AppRoutes = () => {
       <Route path="/marketplace/property/:id" element={<AppLayout><PropertyDetails /></AppLayout>} />
       <Route path="/wallet" element={<AppLayout><Wallet /></AppLayout>} />
       <Route path="/offer" element={<AppLayout><Offer /></AppLayout>} />
+      <Route path="/my-assets" element={<AppLayout><MyAssets /></AppLayout>} />
+      <Route path="/my-assets/:id" element={<AppLayout><AssetDetails /></AppLayout>} />
       <Route path="/tokenization-hub" element={<AppLayout><TokenizationHub /></AppLayout>} />
-      <Route path="/assets" element={<AppLayout><MyAssets /></AppLayout>} />
       <Route path="/offers" element={<AppLayout><Offers /></AppLayout>} />
       <Route path="/favorites" element={<AppLayout><Favorites /></AppLayout>} />
       <Route path="/profile" element={<AppLayout><Profile /></AppLayout>} />

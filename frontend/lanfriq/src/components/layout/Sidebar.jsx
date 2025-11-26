@@ -20,8 +20,8 @@ const Sidebar = () => {
     {
       title: 'Portfolio',
       items: [
+        { path: '/my-assets', icon: Home, label: 'Assets' },
         { path: '/tokenization-hub', icon: Package, label: 'Tokenization Hub' },
-        { path: '/my-assets', icon: Home, label: 'My Assets' },
         { path: '/favorites', icon: Heart, label: 'Favorites' },
         { path: '/wishlist', icon: Heart, label: 'Wishlist' }
       ]
