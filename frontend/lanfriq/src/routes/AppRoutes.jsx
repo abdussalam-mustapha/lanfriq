@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import LandingPage from '../pages/landing/LandingPage'
+import VerifyAccount from '../pages/VerifyAccount'
 import Marketplace from '../pages/marketplace/Marketplace'
 import PropertyDetails from '../pages/marketplace/PropertyDetails'
 import TokenizationHub from '../pages/tokenization-hub/TokenizationHub'
@@ -15,6 +16,7 @@ const AppRoutes = () => {
     <Routes>
       {/* Public Routes */}
       <Route path="/" element={<LandingPage />} />
+      <Route path="/verify-account" element={<VerifyAccount />} />
       
       {/* App Routes with Layout */}
       <Route element={<MainLayout />}>
