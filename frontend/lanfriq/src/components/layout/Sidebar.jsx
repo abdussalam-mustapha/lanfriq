@@ -9,7 +9,13 @@ const Sidebar = () => {
   const { theme } = useTheme()
   
   const navItems = [
-    { path: '/marketplace', icon: Store, label: 'Market' }
+    { path: '/marketplace', icon: Store, label: 'Market' },
+    { path: '/tokenization-hub', icon: Package, label: 'Tokenization Hub' },
+    { path: '/my-assets', icon: Home, label: 'My Assets' },
+    { path: '/offers', icon: Tag, label: 'Offers' },
+    { path: '/favorites', icon: Heart, label: 'Favorites' },
+    { path: '/profile', icon: User, label: 'Profile' },
+    { path: '/notifications', icon: Bell, label: 'Notifications' }
   ]
 
   return (
