@@ -128,8 +128,8 @@ const PropertyDetails = () => {
                   <svg viewBox="0 0 600 200" className="property-details__chart-svg" preserveAspectRatio="none">
                     <defs>
                       <linearGradient id="chartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" style="stop-color:#8cc043;stop-opacity:0.3" />
-                        <stop offset="100%" style="stop-color:#8cc043;stop-opacity:0" />
+                        <stop offset="0%" stopColor="#8cc043" stopOpacity="0.3" />
+                        <stop offset="100%" stopColor="#8cc043" stopOpacity="0" />
                       </linearGradient>
                     </defs>
                     <path 
