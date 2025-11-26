@@ -639,6 +639,10 @@
   min-width: 0;
 }
 
+[data-theme="light"] .wallet__swap-right input {
+  color: #000000;
+}
+
 .wallet__swap-amount {
   font-size: 0.875rem;
   color: var(--text-primary);
