@@ -7,6 +7,7 @@ import TargetAudience from '../../components/sections/TargetAudience'
 import Statistics from '../../components/sections/Statistics'
 import HowItWorks from '../../components/sections/HowItWorks'
 import CTA from '../../components/sections/CTA'
+import Footer from '../../components/layout/Footer'
 
 const LandingPage = () => {
   useEffect(() => {
@@ -36,6 +37,7 @@ const LandingPage = () => {
       <div data-aos="fade-up">
         <CTA />
       </div>
+      <Footer />
     </>
   )
 }

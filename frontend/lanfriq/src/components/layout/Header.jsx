@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useTheme } from '../../context/ThemeContext'
-import { ChevronDown, Wallet, Bell } from 'lucide-react'
+import { ChevronDown, Wallet, Bell, Menu, X } from 'lucide-react'
 import logo from '../../assets/logo.png'
 import logoWhite from '../../assets/lanfriqnavlogowhite.png'
 import './Header.css'
@@ -10,6 +10,7 @@ const Header = () => {
   const { theme, toggleTheme } = useTheme()
   const location = useLocation()
   const [isUseCaseOpen, setIsUseCaseOpen] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const currentLogo = theme === 'dark' ? logoWhite : logo
   const isLandingPage = location.pathname === '/'
 
@@ -55,6 +56,13 @@ const Header = () => {
             
             <div className="nav__actions">
               <button 
+                className="nav__mobile-menu-btn"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label="Toggle menu"
+              >
+                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+              <button 
                 onClick={toggleTheme}
                 className="theme-toggle"
                 aria-label="Toggle theme"
@@ -83,6 +91,22 @@ const Header = () => {
               </Link>
             </div>
           </nav>
+          
+          {/* Mobile Menu Overlay */}
+          {isMobileMenuOpen && (
+            <div className="nav__mobile-overlay">
+              <nav className="nav__mobile-menu">
+                <a href="#benefits" className="nav__mobile-link" onClick={() => setIsMobileMenuOpen(false)}>Benefits</a>
+                <a href="#investors" className="nav__mobile-link" onClick={() => setIsMobileMenuOpen(false)}>For Investors</a>
+                <a href="#property-owners" className="nav__mobile-link" onClick={() => setIsMobileMenuOpen(false)}>Property Owners</a>
+                <a href="#businesses" className="nav__mobile-link" onClick={() => setIsMobileMenuOpen(false)}>Business/Firm</a>
+                <a href="#how-it-works" className="nav__mobile-link" onClick={() => setIsMobileMenuOpen(false)}>How It Works</a>
+                <Link to="/marketplace" className="btn btn--primary" style={{ marginTop: '20px' }} onClick={() => setIsMobileMenuOpen(false)}>
+                  Get Started
+                </Link>
+              </nav>
+            </div>
+          )}
         </div>
       </header>
     )
@@ -111,6 +135,13 @@ const Header = () => {
           </ul>
           
           <div className="nav__actions">
+            <button 
+              className="nav__mobile-menu-btn"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
             <Link to="/notifications" className="nav__icon-btn">
               <Bell size={20} />
             </Link>
@@ -143,6 +174,24 @@ const Header = () => {
             </button>
           </div>
         </nav>
+        
+        {/* Mobile Menu Overlay */}
+        {isMobileMenuOpen && (
+          <div className="nav__mobile-overlay">
+            <nav className="nav__mobile-menu">
+              {navLinks.map((link) => (
+                <Link 
+                  key={link.path}
+                  to={link.path} 
+                  className="nav__mobile-link"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+          </div>
+        )}
       </div>
     </header>
   )

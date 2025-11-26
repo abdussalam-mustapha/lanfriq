@@ -76,6 +76,50 @@
   color: var(--color-primary);
 }
 
+.nav__mobile-menu-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  padding: 0;
+  transition: color var(--transition-fast);
+}
+
+.nav__mobile-menu-btn:hover {
+  color: var(--color-primary);
+}
+
+.nav__mobile-overlay {
+  display: none;
+}
+
+.nav__mobile-menu {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+}
+
+.nav__mobile-link {
+  font-family: var(--font-outfit);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  padding: var(--spacing-sm) 0;
+  border-bottom: 1px solid var(--color-border);
+  transition: color var(--transition-fast);
+}
+
+.nav__mobile-link:hover,
+.nav__mobile-link.active {
+  color: var(--color-primary);
+}
+
 .nav__dropdown {
   position: relative;
 }
@@ -182,12 +226,42 @@
 
 @media (max-width: 768px) {
   .header {
-    margin: 16px;
-    border-radius: 12px;
+    margin: 0;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
   }
   
   .nav__menu {
     display: none;
+  }
+  
+  .nav__mobile-menu-btn {
+    display: flex;
+  }
+  
+  .nav__mobile-overlay {
+    display: block;
+    position: fixed;
+    top: 73px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--color-background);
+    z-index: 99;
+    overflow-y: auto;
+    animation: slideDown 0.3s ease-out;
+  }
+  
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
   
   .nav {
@@ -198,11 +272,43 @@
     height: 32px;
   }
   
+  .nav__actions {
+    gap: 8px;
+  }
+  
   .btn--connect-wallet span {
     display: none;
   }
   
   .btn--connect-wallet {
     padding: 10px;
+  }
+  
+  .theme-toggle {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .nav__icon-btn {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav__logo-img {
+    height: 28px;
+  }
+  
+  .header {
+    margin: 0;
+  }
+  
+  .nav {
+    padding: 10px 12px;
+  }
+  
+  .nav__actions {
+    gap: 6px;
   }
 }

@@ -168,6 +168,27 @@ img {
   box-sizing: border-box;
 }
 
+@media (max-width: 768px) {
+  :root {
+    --container-padding: 1.5rem;
+    --spacing-3xl: 4rem;
+    --spacing-2xl: 3rem;
+  }
+  
+  .container {
+    padding: 0 var(--container-padding);
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --container-padding: 1rem;
+    --spacing-3xl: 3rem;
+    --spacing-2xl: 2rem;
+    --spacing-xl: 2rem;
+  }
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

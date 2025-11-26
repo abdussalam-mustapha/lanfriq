@@ -80,13 +80,19 @@
 .feature-card:nth-child(5) {
   padding-top: 48px;
   padding-bottom: 48px;
-  margin-top: -80px;
+  margin-top: -60px;
   z-index: 2;
 }
 
 .feature-card:nth-child(5) .feature-card__image {
   min-height: 240px;
   margin-bottom: 32px;
+}
+
+/* Transparent Valuation card - add space to prevent overlap */
+.feature-card:nth-child(6) {
+  margin-top: 20px;
+  z-index: 1;
 }
 
 .feature-card__image {
@@ -196,6 +202,17 @@
   }
 }
 
+@media (max-width: 1024px) {
+  /* Remove negative margin on NFT card for tablet/mobile */
+  .feature-card:nth-child(5) {
+    margin-top: 0;
+  }
+  
+  .feature-card:nth-child(6) {
+    margin-top: 0;
+  }
+}
+
 @media (max-width: 768px) {
   .features__grid {
     grid-template-columns: 1fr;
@@ -231,5 +248,11 @@
 
   .feature-card__title {
     font-size: 22px;
+  }
+  
+  /* Ensure NFT card has normal padding on mobile */
+  .feature-card:nth-child(5) {
+    padding-top: 32px;
+    padding-bottom: 32px;
   }
 }
