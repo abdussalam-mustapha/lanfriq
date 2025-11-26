@@ -22,14 +22,13 @@ const Sidebar = () => {
       items: [
         { path: '/tokenization-hub', icon: Package, label: 'Tokenization Hub' },
         { path: '/my-assets', icon: Home, label: 'My Assets' },
-        { path: '/favorites', icon: Heart, label: 'Favorites' }
+        { path: '/favorites', icon: Heart, label: 'Favorites' },
+        { path: '/wishlist', icon: Heart, label: 'Wishlist' }
       ]
     },
     {
       title: 'Resources',
       items: [
-        { path: '/profile', icon: User, label: 'Profile' },
-        { path: '/notifications', icon: Bell, label: 'Notifications' },
         { path: '/settings', icon: Settings, label: 'Settings' },
         { path: '/support', icon: HelpCircle, label: 'Support/Help' }
       ]
