@@ -191,28 +191,33 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
-  padding: 40px;
-  border: 2px dashed rgba(255, 255, 255, 0.1);
+  padding: 48px 40px;
+  border: 2px dashed rgba(255, 255, 255, 0.15);
   border-radius: 12px;
   cursor: pointer;
   transition: all var(--transition-base);
   text-align: center;
+  background-color: transparent;
+  min-height: 140px;
 }
 
 .kyc-form__upload-area:hover {
-  border-color: var(--color-primary);
-  background-color: rgba(140, 192, 67, 0.05);
+  border-color: rgba(140, 192, 67, 0.5);
+  background-color: rgba(140, 192, 67, 0.03);
 }
 
 .kyc-form__upload-area svg {
-  color: var(--color-text-secondary);
+  color: rgba(255, 255, 255, 0.3);
+  width: 28px;
+  height: 28px;
 }
 
 .kyc-form__upload-area p {
   font-family: var(--font-outfit);
   font-size: 14px;
-  color: var(--color-text-secondary);
+  color: rgba(255, 255, 255, 0.4);
   margin: 0;
+  line-height: 1.5;
 }
 
 .kyc-form__upload-link {
