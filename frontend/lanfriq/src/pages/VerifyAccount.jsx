@@ -2,11 +2,15 @@ import { useNavigate } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 import { Globe } from 'lucide-react'
 import authScanImg from '../assets/authScanImg.png'
+import logo from '../assets/logo.png'
+import logoWhite from '../assets/lanfriqnavlogowhite.png'
+import { useTheme } from '../context/ThemeContext'
 import './VerifyAccount.css'
 
 const VerifyAccount = () => {
   const navigate = useNavigate()
   const { address } = useAccount()
+  const { theme } = useTheme()
 
   const handleGetVerified = () => {
     // Navigate to verification flow
@@ -26,12 +30,7 @@ const VerifyAccount = () => {
     <div className="verify-account">
       <div className="verify-account__header">
         <div className="verify-account__logo">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M4 4L12 8L20 4L12 0L4 4Z" fill="#8cc043"/>
-            <path d="M4 8V16L12 20V12L4 8Z" fill="#8cc043"/>
-            <path d="M20 8V16L12 20V12L20 8Z" fill="#8cc043"/>
-          </svg>
-          <span className="verify-account__brand">Lanfriq</span>
+          <img src={theme === 'dark' ? logoWhite : logo} alt="Lanfriq" className="verify-account__logo-img" />
         </div>
         <div className="verify-account__language">
           <Globe size={18} />
