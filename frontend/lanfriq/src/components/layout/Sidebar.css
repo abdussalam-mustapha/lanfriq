@@ -46,8 +46,31 @@
 .sidebar__nav {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1.5rem;
   padding: 0 1rem;
+}
+
+.sidebar__section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sidebar__section-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+  opacity: 0.5;
+  padding: 0 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.sidebar__section-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
 .sidebar__nav-item {
@@ -102,6 +125,15 @@
 
   .sidebar__nav {
     padding: 0 0.5rem;
+    gap: 1rem;
+  }
+
+  .sidebar__section-title {
+    display: none;
+  }
+
+  .sidebar__section-items {
+    gap: 0.5rem;
   }
 
   .sidebar__nav-item span {
