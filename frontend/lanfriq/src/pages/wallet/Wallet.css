@@ -476,39 +476,10 @@
   background: rgba(0, 0, 0, 0.02);
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-top: none;
-}wallet__tab--active {
-  color: var(--text-primary);
-  background: rgba(140, 192, 67, 0.05);
-  border-bottom-color: #8cc043;
 }
 
-.wallet__tab-content {
-  padding: 2rem;
-.wallet__form-group input,
-.wallet__form-group select {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 1rem;
-  color: var(--text-primary);
-  font-size: 0.9375rem;
-  transition: all 0.2s ease;
-}
-
-[data-theme="light"] .wallet__form-group input,
-[data-theme="light"] .wallet__form-group select {
-  background: rgba(0, 0, 0, 0.03);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  color: #000000;
-}
-
-.wallet__form-group input::placeholder {
-  color: rgba(255, 255, 255, 0.3);
-}
-
-[data-theme="light"] .wallet__form-group input::placeholder {
-  color: rgba(0, 0, 0, 0.3);
-} display: flex;
+.wallet__form-group {
+  display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
@@ -535,8 +506,19 @@
   transition: all 0.2s ease;
 }
 
+[data-theme="light"] .wallet__form-group input,
+[data-theme="light"] .wallet__form-group select {
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #000000;
+}
+
 .wallet__form-group input::placeholder {
   color: rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="light"] .wallet__form-group input::placeholder {
+  color: rgba(0, 0, 0, 0.3);
 }
 
 .wallet__form-group input:focus,
