@@ -4,6 +4,7 @@ import VerifyAccount from '../pages/VerifyAccount'
 import UserTypeSelection from '../pages/UserTypeSelection'
 import KYCForm from '../pages/KYCForm'
 import KYCSuccess from '../pages/KYCSuccess'
+import KYBForm from '../pages/KYBForm'
 import Marketplace from '../pages/marketplace/Marketplace'
 import PropertyDetails from '../pages/marketplace/PropertyDetails'
 import TokenizationHub from '../pages/tokenization-hub/TokenizationHub'
@@ -20,11 +21,10 @@ const AppRoutes = () => {
       {/* Public Routes */}
       <Route path="/" element={<LandingPage />} />
       <Route path="/verify-account" element={<VerifyAccount />} />
-      <Route path="/verification" element={<UserTypeSelection />} />
-      <Route path="/verification/:type" element={<KYCForm />} />
-      <Route path="/kyc-success" element={<KYCSuccess />} />
-      
-      {/* App Routes with Layout */}
+        <Route path="/verification" element={<UserTypeSelection />} />
+        <Route path="/verification/individual" element={<KYCForm />} />
+        <Route path="/verification/business" element={<KYBForm />} />
+        <Route path="/kyc-success" element={<KYCSuccess />} />      {/* App Routes with Layout */}
       <Route element={<MainLayout />}>
         <Route path="/marketplace" element={<Marketplace />} />
         <Route path="/marketplace/:propertyId" element={<PropertyDetails />} />
