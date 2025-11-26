@@ -214,6 +214,12 @@
   color: var(--color-primary);
 }
 
+/* Override RainbowKit default button styling */
+.nav__connect-wallet button {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
 @media (max-width: 1024px) {
   .header {
     margin: 20px;
