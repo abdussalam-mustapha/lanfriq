@@ -36,6 +36,26 @@
   gap: 1rem;
 }
 
+.app-layout__connect-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(140, 192, 67, 0.1);
+  border: 1px solid rgba(140, 192, 67, 0.3);
+  border-radius: 24px;
+  padding: 0.5rem 1rem;
+  color: #8cc043;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.app-layout__connect-btn:hover {
+  background: rgba(140, 192, 67, 0.15);
+  border-color: #8cc043;
+}
+
 .app-layout__icon-btn {
   position: relative;
   background: rgba(255, 255, 255, 0.05);

@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Search, Bell, Heart } from 'lucide-react'
-import { ConnectButton } from '@rainbowkit/react'
+import { Search, Bell, User } from 'lucide-react'
 import SearchModal from '../modals/SearchModal'
 import NotificationPanel from '../modals/NotificationPanel'
 import Sidebar from './Sidebar'
@@ -32,7 +31,10 @@ const AppLayout = ({ children }) => {
               <Bell size={20} />
               <span className="app-layout__notification-badge">2</span>
             </button>
-            <ConnectButton />
+            <button className="app-layout__connect-btn" onClick={() => navigate('/verify-account')}>
+              <User size={18} />
+              <span>0x1...fXp</span>
+            </button>
           </div>
         </header>
 
