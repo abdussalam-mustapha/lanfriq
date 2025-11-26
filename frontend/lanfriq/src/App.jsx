@@ -1,18 +1,15 @@
+import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from './context/ThemeContext'
-import Footer from './components/layout/Footer'
-import LandingPage from './pages/landing/LandingPage'
+import AppRoutes from './routes/AppRoutes'
 import './App.css'
 
 function App() {
   return (
-    <ThemeProvider>
-      <div className="app">
-        <main>
-          <LandingPage />
-        </main>
-        <Footer />
-      </div>
-    </ThemeProvider>
+    <BrowserRouter>
+      <ThemeProvider>
+        <AppRoutes />
+      </ThemeProvider>
+    </BrowserRouter>
   )
 }
 
