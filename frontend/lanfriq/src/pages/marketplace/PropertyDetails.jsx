@@ -74,9 +74,10 @@ const PropertyDetails = () => {
             </div>
           </div>
 
-          {/* Activity */}
-          <div className="property-details__section">
-            <h3 className="property-details__section-title">Activity</h3>
+          {/* Activity & Financials Row */}
+          <div className="property-details__row">
+            <div className="property-details__section property-details__section--half">
+              <h3 className="property-details__section-title">Activity</h3>
             <div className="property-details__activity">
               <div className="property-details__activity-item">
                 <User size={16} />
@@ -110,33 +111,56 @@ const PropertyDetails = () => {
                 </div>
               </div>
             </div>
-          </div>
+            </div>
 
-          {/* Price History */}
-          <div className="property-details__section">
-            <h3 className="property-details__section-title">Price History <span className="property-details__timeframe">36kH</span></h3>
-            <div className="property-details__chart">
-              <div className="property-details__chart-placeholder">
-                <svg viewBox="0 0 400 150" className="property-details__chart-svg">
-                  <polyline 
-                    points="0,100 50,80 100,90 150,60 200,70 250,40 300,50 350,30 400,35"
-                    fill="none"
-                    stroke="#8cc043"
-                    strokeWidth="2"
-                  />
-                  <polyline 
-                    points="0,100 50,80 100,90 150,60 200,70 250,40 300,50 350,30 400,35 400,150 0,150"
-                    fill="rgba(140, 192, 67, 0.1)"
-                    stroke="none"
-                  />
-                </svg>
+            {/* Financials */}
+            <div className="property-details__section property-details__section--half">
+              <h3 className="property-details__section-title">Financials <span className="property-details__timeframe">2024</span></h3>
+              <div className="property-details__chart">
+                <div className="property-details__chart-labels">
+                  <span>40</span>
+                  <span>30</span>
+                  <span>20</span>
+                  <span>10</span>
+                  <span>0</span>
+                </div>
+                <div className="property-details__chart-content">
+                  <svg viewBox="0 0 600 200" className="property-details__chart-svg" preserveAspectRatio="none">
+                    <defs>
+                      <linearGradient id="chartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#8cc043;stop-opacity:0.3" />
+                        <stop offset="100%" style="stop-color:#8cc043;stop-opacity:0" />
+                      </linearGradient>
+                    </defs>
+                    <path 
+                      d="M 0,120 L 60,100 L 120,110 L 180,90 L 240,100 L 300,70 L 360,85 L 420,60 L 480,75 L 540,55 L 600,50"
+                      fill="none"
+                      stroke="#8cc043"
+                      strokeWidth="2.5"
+                    />
+                    <path 
+                      d="M 0,120 L 60,100 L 120,110 L 180,90 L 240,100 L 300,70 L 360,85 L 420,60 L 480,75 L 540,55 L 600,50 L 600,200 L 0,200 Z"
+                      fill="url(#chartGradient)"
+                    />
+                  </svg>
+                  <div className="property-details__chart-months">
+                    <span>Jan</span>
+                    <span>Feb</span>
+                    <span>Mar</span>
+                    <span>Apr</span>
+                    <span>May</span>
+                    <span className="property-details__chart-month--active">Jun</span>
+                    <span>Jul</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* NFT Metadata */}
-          <div className="property-details__section">
-            <h3 className="property-details__section-title">NFT Marketplace <span className="property-details__view-all">View (1)</span></h3>
+          {/* NFT Metadata & Investors Row */}
+          <div className="property-details__row">
+            <div className="property-details__section property-details__section--half">
+              <h3 className="property-details__section-title">NFT Metadata <span className="property-details__view-all">View NFT</span></h3>
             <div className="property-details__metadata">
               <div className="property-details__metadata-row">
                 <span>Token Name</span>
@@ -167,11 +191,11 @@ const PropertyDetails = () => {
                 <span className="property-details__broker-active">{property.nft.broker}</span>
               </div>
             </div>
-          </div>
+            </div>
 
-          {/* Owners */}
-          <div className="property-details__section">
-            <h3 className="property-details__section-title">Owners <span className="property-details__owner-count">200.30 BNBF</span></h3>
+            {/* Investors */}
+            <div className="property-details__section property-details__section--half">
+              <h3 className="property-details__section-title">Investors <span className="property-details__owner-count">200.50 HBAR</span></h3>
             <div className="property-details__owners">
               {property.owners.map((owner, index) => (
                 <div key={index} className="property-details__owner-row">
@@ -183,6 +207,7 @@ const PropertyDetails = () => {
                   <span className="property-details__owner-tokens">{owner.tokens}</span>
                 </div>
               ))}
+            </div>
             </div>
           </div>
         </div>
