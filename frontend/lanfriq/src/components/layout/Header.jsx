@@ -2,18 +2,20 @@ import { useState } from 'react'
 import { useTheme } from '../../context/ThemeContext'
 import { ChevronDown, Wallet } from 'lucide-react'
 import logo from '../../assets/logo.png'
+import logoWhite from '../../assets/lanfriqnavlogowhite.png'
 import './Header.css'
 
 const Header = () => {
   const { theme, toggleTheme } = useTheme()
   const [isUseCaseOpen, setIsUseCaseOpen] = useState(false)
+  const currentLogo = theme === 'dark' ? logoWhite : logo
 
   return (
     <header className="header">
       <div className="container">
         <nav className="nav">
           <div className="nav__logo">
-            <img src={logo} alt="Lanfriq" className="nav__logo-img" />
+            <img src={currentLogo} alt="Lanfriq" className="nav__logo-img" />
           </div>
           
           <ul className="nav__menu">

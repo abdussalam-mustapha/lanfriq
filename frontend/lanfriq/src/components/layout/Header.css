@@ -9,6 +9,7 @@
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   transition: all var(--transition-base);
+  position: relative;
 }
 
 .nav {

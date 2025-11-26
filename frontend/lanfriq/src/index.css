@@ -107,6 +107,8 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
@@ -115,6 +117,8 @@ body {
   background-color: var(--color-background);
   color: var(--color-text-primary);
   transition: background-color var(--transition-base), color var(--transition-base);
+  overflow-x: hidden;
+  width: 100%;
 }
 
 /* Typography Scale */
@@ -160,6 +164,8 @@ img {
   max-width: var(--container-max-width);
   margin: 0 auto;
   padding: 0 var(--container-padding);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .sr-only {
