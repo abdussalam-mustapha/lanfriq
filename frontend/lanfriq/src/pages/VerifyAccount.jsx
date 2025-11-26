@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router-dom'
+import { useAccount } from 'wagmi'
 import { Globe } from 'lucide-react'
 import './VerifyAccount.css'
 
 const VerifyAccount = () => {
   const navigate = useNavigate()
+  const { address } = useAccount()
 
   const handleGetVerified = () => {
     // Navigate to verification flow
@@ -11,6 +13,10 @@ const VerifyAccount = () => {
   }
 
   const handleSkip = () => {
+    // Mark as skipped in localStorage
+    if (address) {
+      localStorage.setItem(`lanfriq-verified-${address}`, 'skipped')
+    }
     // Navigate to marketplace
     navigate('/marketplace')
   }

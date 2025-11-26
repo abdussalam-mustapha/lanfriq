@@ -4,6 +4,7 @@ import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit'
 import '@rainbow-me/rainbowkit/styles.css'
 import { ThemeProvider } from './context/ThemeContext'
+import { WalletProvider } from './context/WalletContext'
 import { config } from './config/wagmi'
 import AppRoutes from './routes/AppRoutes'
 import './App.css'
@@ -22,7 +23,9 @@ function App() {
         })}>
           <BrowserRouter>
             <ThemeProvider>
-              <AppRoutes />
+              <WalletProvider>
+                <AppRoutes />
+              </WalletProvider>
             </ThemeProvider>
           </BrowserRouter>
         </RainbowKitProvider>
