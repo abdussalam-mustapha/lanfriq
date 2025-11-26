@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useTheme } from '../../context/ThemeContext'
 import { ChevronDown, Wallet, Bell, Menu, X } from 'lucide-react'
+import WalletConnectModal from '../modals/WalletConnectModal'
 import logo from '../../assets/logo.png'
 import logoWhite from '../../assets/lanfriqnavlogowhite.png'
 import './Header.css'
@@ -11,6 +12,7 @@ const Header = () => {
   const location = useLocation()
   const [isUseCaseOpen, setIsUseCaseOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isWalletModalOpen, setIsWalletModalOpen] = useState(false)
   const currentLogo = theme === 'dark' ? logoWhite : logo
   const isLandingPage = location.pathname === '/'
 
@@ -25,6 +27,7 @@ const Header = () => {
   // Don't show full nav on landing page
   if (isLandingPage) {
     return (
+      <>
       <header className="header">
         <div className="container">
           <nav className="nav">
@@ -85,7 +88,7 @@ const Header = () => {
                   </svg>
                 )}
               </button>
-              <Link to="/marketplace" className="btn btn--connect-wallet">
+              <Link to="/marketplace" className="btn btn--connect-wallet" onClick={(e) => { e.preventDefault(); setIsWalletModalOpen(true); }}>
                 <Wallet size={20} strokeWidth={2} />
                 <span>Get Started</span>
               </Link>
@@ -101,20 +104,25 @@ const Header = () => {
                 <a href="#property-owners" className="nav__mobile-link" onClick={() => setIsMobileMenuOpen(false)}>Property Owners</a>
                 <a href="#businesses" className="nav__mobile-link" onClick={() => setIsMobileMenuOpen(false)}>Business/Firm</a>
                 <a href="#how-it-works" className="nav__mobile-link" onClick={() => setIsMobileMenuOpen(false)}>How It Works</a>
-                <Link to="/marketplace" className="btn btn--primary" style={{ marginTop: '20px' }} onClick={() => setIsMobileMenuOpen(false)}>
+                <button className="btn btn--primary" style={{ marginTop: '20px' }} onClick={() => { setIsMobileMenuOpen(false); setIsWalletModalOpen(true); }}>
                   Get Started
-                </Link>
+                </button>
               </nav>
             </div>
           )}
         </div>
       </header>
+      
+      {/* Wallet Connect Modal */}
+      <WalletConnectModal isOpen={isWalletModalOpen} onClose={() => setIsWalletModalOpen(false)} />
+      </>
     )
   }
 
   // App header with full navigation
   return (
-    <header className="header header--app">
+    <>
+      <header className="header header--app">
       <div className="container">
         <nav className="nav">
           <Link to="/" className="nav__logo">
@@ -168,7 +176,7 @@ const Header = () => {
                 </svg>
               )}
             </button>
-            <button className="btn btn--connect-wallet">
+            <button className="btn btn--connect-wallet" onClick={() => setIsWalletModalOpen(true)}>
               <Wallet size={20} strokeWidth={2} />
               <span>Connect Wallet</span>
             </button>
@@ -194,6 +202,10 @@ const Header = () => {
         )}
       </div>
     </header>
+    
+    {/* Wallet Connect Modal */}
+    <WalletConnectModal isOpen={isWalletModalOpen} onClose={() => setIsWalletModalOpen(false)} />
+    </>
   )
 }
 

@@ -1,0 +1,211 @@
+.wallet-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+  backdrop-filter: blur(4px);
+}
+
+.wallet-modal {
+  background-color: #0F0F0F;
+  border-radius: 24px;
+  padding: 32px;
+  max-width: 420px;
+  width: 100%;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.wallet-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.wallet-modal__logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wallet-modal__brand {
+  font-family: var(--font-outfit);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.wallet-modal__language {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-text-secondary);
+  font-family: var(--font-outfit);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: background-color var(--transition-base);
+}
+
+.wallet-modal__language:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.wallet-modal__title {
+  font-family: var(--font-outfit);
+  font-size: 32px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.wallet-modal__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.wallet-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #1A1A1A;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 18px 20px;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  width: 100%;
+}
+
+.wallet-option:hover {
+  background-color: #222222;
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.wallet-option--popular {
+  background-color: rgba(140, 192, 67, 0.08);
+  border-color: rgba(140, 192, 67, 0.2);
+}
+
+.wallet-option--popular:hover {
+  background-color: rgba(140, 192, 67, 0.12);
+  border-color: rgba(140, 192, 67, 0.3);
+}
+
+.wallet-option__content {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.wallet-option__icon {
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+}
+
+.wallet-option__name {
+  font-family: var(--font-outfit);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.wallet-option__arrow {
+  color: var(--color-text-secondary);
+  transition: transform var(--transition-base);
+}
+
+.wallet-option:hover .wallet-option__arrow {
+  transform: translateX(4px);
+  color: var(--color-text-primary);
+}
+
+.wallet-modal__load-more {
+  width: 100%;
+  padding: 16px;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  font-family: var(--font-outfit);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  margin-bottom: 24px;
+}
+
+.wallet-modal__load-more:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.wallet-modal__terms {
+  font-family: var(--font-outfit);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  text-align: center;
+  margin: 0;
+}
+
+.wallet-modal__link {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+.wallet-modal__link:hover {
+  color: var(--color-primary-hover);
+  text-decoration: underline;
+}
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+  .wallet-modal {
+    padding: 24px;
+    max-width: 100%;
+    border-radius: 20px;
+  }
+
+  .wallet-modal__title {
+    font-size: 28px;
+    margin-bottom: 24px;
+  }
+
+  .wallet-option {
+    padding: 16px 18px;
+  }
+
+  .wallet-option__icon {
+    font-size: 24px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .wallet-option__name {
+    font-size: 15px;
+  }
+
+  .wallet-modal__terms {
+    font-size: 12px;
+  }
+}
