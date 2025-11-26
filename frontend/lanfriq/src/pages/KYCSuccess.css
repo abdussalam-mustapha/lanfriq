@@ -1,0 +1,135 @@
+.kyc-success {
+  min-height: 100vh;
+  background-color: var(--color-background);
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+}
+
+.kyc-success__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 80px;
+}
+
+.kyc-success__logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kyc-success__logo-img {
+  height: 32px;
+  width: auto;
+}
+
+.kyc-success__language {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-text-secondary);
+  font-family: var(--font-outfit);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: background-color var(--transition-base);
+}
+
+.kyc-success__language:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.kyc-success__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.kyc-success__icon {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background-color: rgba(140, 192, 67, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32px;
+  position: relative;
+}
+
+.kyc-success__icon::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 2px solid rgba(140, 192, 67, 0.2);
+}
+
+.kyc-success__icon svg {
+  color: var(--color-primary);
+}
+
+.kyc-success__title {
+  font-family: var(--font-outfit);
+  font-size: 48px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  margin: 0 0 20px 0;
+}
+
+.kyc-success__description {
+  font-family: var(--font-outfit);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin: 0 0 40px 0;
+}
+
+.kyc-success__btn {
+  padding: 16px 48px;
+  font-family: var(--font-outfit);
+  font-size: 16px;
+  font-weight: 500;
+  background-color: var(--color-primary);
+  color: #0F0F0F;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.kyc-success__btn:hover {
+  background-color: var(--color-primary-hover);
+  transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .kyc-success {
+    padding: 24px 20px;
+  }
+
+  .kyc-success__header {
+    margin-bottom: 60px;
+  }
+
+  .kyc-success__title {
+    font-size: 36px;
+  }
+
+  .kyc-success__description {
+    font-size: 15px;
+  }
+
+  .kyc-success__btn {
+    width: 100%;
+  }
+}

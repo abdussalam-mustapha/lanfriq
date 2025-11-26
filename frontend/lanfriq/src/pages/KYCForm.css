@@ -1,0 +1,314 @@
+.kyc-form {
+  min-height: 100vh;
+  background-color: var(--color-background);
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+}
+
+.kyc-form__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 60px;
+}
+
+.kyc-form__logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kyc-form__logo-img {
+  height: 32px;
+  width: auto;
+}
+
+.kyc-form__language {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-text-secondary);
+  font-family: var(--font-outfit);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: background-color var(--transition-base);
+}
+
+.kyc-form__language:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.kyc-form__container {
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.kyc-form__steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 60px;
+  gap: 0;
+}
+
+.kyc-form__step-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.kyc-form__step {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-outfit);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  transition: all var(--transition-base);
+}
+
+.kyc-form__step.active {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #0F0F0F;
+}
+
+.kyc-form__step-line {
+  width: 80px;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: 0 -2px;
+}
+
+.kyc-form__content {
+  margin-bottom: 40px;
+}
+
+.kyc-form__title {
+  font-family: var(--font-outfit);
+  font-size: 32px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  margin: 0 0 12px 0;
+}
+
+.kyc-form__description {
+  font-family: var(--font-outfit);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin: 0 0 40px 0;
+  max-width: 600px;
+}
+
+.kyc-form__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.kyc-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.kyc-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.kyc-form__label {
+  font-family: var(--font-outfit);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.kyc-form__label-icon {
+  color: var(--color-text-secondary);
+}
+
+.kyc-form__input,
+.kyc-form__select {
+  width: 100%;
+  padding: 14px 16px;
+  font-family: var(--font-outfit);
+  font-size: 15px;
+  color: var(--color-text-primary);
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  transition: all var(--transition-base);
+}
+
+.kyc-form__input::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+.kyc-form__input:focus,
+.kyc-form__select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.kyc-form__select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 6L8 10L12 6' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+
+.kyc-form__upload {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.kyc-form__upload-input {
+  display: none;
+}
+
+.kyc-form__upload-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 40px;
+  border: 2px dashed rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  text-align: center;
+}
+
+.kyc-form__upload-area:hover {
+  border-color: var(--color-primary);
+  background-color: rgba(140, 192, 67, 0.05);
+}
+
+.kyc-form__upload-area svg {
+  color: var(--color-text-secondary);
+}
+
+.kyc-form__upload-area p {
+  font-family: var(--font-outfit);
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.kyc-form__upload-link {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.kyc-form__upload-filename {
+  font-family: var(--font-outfit);
+  font-size: 13px;
+  color: var(--color-primary);
+  margin: 0;
+}
+
+.kyc-form__actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.kyc-form__btn {
+  padding: 14px 32px;
+  font-family: var(--font-outfit);
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kyc-form__btn--back {
+  background-color: transparent;
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
+}
+
+.kyc-form__btn--back:hover {
+  background-color: var(--color-surface);
+}
+
+.kyc-form__btn--primary {
+  background-color: var(--color-primary);
+  color: #0F0F0F;
+  min-width: 200px;
+  justify-content: center;
+}
+
+.kyc-form__btn--primary:hover {
+  background-color: var(--color-primary-hover);
+  transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .kyc-form {
+    padding: 24px 20px;
+  }
+
+  .kyc-form__header {
+    margin-bottom: 40px;
+  }
+
+  .kyc-form__steps {
+    margin-bottom: 40px;
+  }
+
+  .kyc-form__step {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .kyc-form__step-line {
+    width: 40px;
+  }
+
+  .kyc-form__title {
+    font-size: 28px;
+  }
+
+  .kyc-form__row {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .kyc-form__actions {
+    flex-direction: column-reverse;
+  }
+
+  .kyc-form__btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
