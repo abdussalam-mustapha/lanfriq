@@ -214,6 +214,32 @@
   color: var(--color-primary);
 }
 
+/* RainbowKit Connect Button Styles */
+.nav__connect-wallet {
+  display: flex;
+  align-items: center;
+}
+
+.nav__connect-wallet button {
+  background: transparent !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: 12px !important;
+  padding: 12px 24px !important;
+  font-family: var(--font-outfit) !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  color: var(--color-text-primary) !important;
+  transition: all var(--transition-base) !important;
+  box-shadow: none !important;
+}
+
+.nav__connect-wallet button:hover {
+  background: var(--color-surface) !important;
+  border-color: var(--color-primary) !important;
+  color: var(--color-primary) !important;
+  transform: translateY(-2px) !important;
+}
+
 @media (max-width: 1024px) {
   .header {
     margin: 20px;
