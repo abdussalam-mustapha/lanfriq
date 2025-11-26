@@ -13,7 +13,7 @@ import Offers from '../pages/offers/Offers'
 import Favorites from '../pages/favorites/Favorites'
 import Profile from '../pages/profile/Profile'
 import Notifications from '../pages/notifications/Notifications'
-import MainLayout from '../components/layout/MainLayout'
+import AppLayout from '../components/layout/AppLayout'
 
 const AppRoutes = () => {
   return (
@@ -21,20 +21,20 @@ const AppRoutes = () => {
       {/* Public Routes */}
       <Route path="/" element={<LandingPage />} />
       <Route path="/verify-account" element={<VerifyAccount />} />
-        <Route path="/verification" element={<UserTypeSelection />} />
-        <Route path="/verification/individual" element={<KYCForm />} />
-        <Route path="/verification/business" element={<KYBForm />} />
-        <Route path="/kyc-success" element={<KYCSuccess />} />      {/* App Routes with Layout */}
-      <Route element={<MainLayout />}>
-        <Route path="/marketplace" element={<Marketplace />} />
-        <Route path="/marketplace/:propertyId" element={<PropertyDetails />} />
-        <Route path="/tokenization-hub" element={<TokenizationHub />} />
-        <Route path="/assets" element={<MyAssets />} />
-        <Route path="/offers" element={<Offers />} />
-        <Route path="/favorites" element={<Favorites />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/notifications" element={<Notifications />} />
-      </Route>
+      <Route path="/verification" element={<UserTypeSelection />} />
+      <Route path="/verification/individual" element={<KYCForm />} />
+      <Route path="/verification/business" element={<KYBForm />} />
+      <Route path="/kyc-success" element={<KYCSuccess />} />
+      
+      {/* App Routes with Sidebar Layout */}
+      <Route path="/marketplace" element={<AppLayout><Marketplace /></AppLayout>} />
+      <Route path="/marketplace/property/:id" element={<AppLayout><PropertyDetails /></AppLayout>} />
+      <Route path="/tokenization-hub" element={<AppLayout><TokenizationHub /></AppLayout>} />
+      <Route path="/assets" element={<AppLayout><MyAssets /></AppLayout>} />
+      <Route path="/offers" element={<AppLayout><Offers /></AppLayout>} />
+      <Route path="/favorites" element={<AppLayout><Favorites /></AppLayout>} />
+      <Route path="/profile" element={<AppLayout><Profile /></AppLayout>} />
+      <Route path="/notifications" element={<AppLayout><Notifications /></AppLayout>} />
 
       {/* Catch all */}
       <Route path="*" element={<Navigate to="/" replace />} />

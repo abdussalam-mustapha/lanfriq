@@ -245,7 +245,7 @@ const KYBForm = () => {
   const renderStep3 = () => (
     <div className="kyb-form__content">
       <h2 className="kyb-form__title">Directors & Beneficial Owners</h2>
-      <p className="kyb-form__description">List only people with >25% share</p>
+      <p className="kyb-form__description">List only people with {'>'} 25% share</p>
 
       {directors.map((director, index) => (
         <div key={director.id} className="kyb-form__director-card">
