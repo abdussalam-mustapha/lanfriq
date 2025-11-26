@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 import { Globe } from 'lucide-react'
+import authScanImg from '../assets/authScanImg.png'
 import './VerifyAccount.css'
 
 const VerifyAccount = () => {
@@ -57,18 +58,7 @@ const VerifyAccount = () => {
         </div>
 
         <div className="verify-account__illustration">
-          <div className="verify-card">
-            <div className="verify-card__frame">
-              <div className="verify-card__avatar">
-                <div className="verify-card__avatar-icon">
-                  <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-                    <circle cx="40" cy="30" r="15" fill="#8cc043"/>
-                    <path d="M20 65C20 55 28 50 40 50C52 50 60 55 60 65V70H20V65Z" fill="#8cc043"/>
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </div>
+          <img src={authScanImg} alt="Verify Account" className="verify-account__image" />
         </div>
       </div>
     </div>

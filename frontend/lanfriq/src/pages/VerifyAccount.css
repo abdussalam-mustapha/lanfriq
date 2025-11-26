@@ -132,81 +132,11 @@
   justify-content: center;
 }
 
-.verify-card {
+.verify-account__image {
   width: 100%;
-  max-width: 400px;
-  aspect-ratio: 1.4;
-  background: linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%);
-  border-radius: 24px;
-  padding: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-}
-
-.verify-card__frame {
-  width: 100%;
-  height: 100%;
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.verify-card__frame::before,
-.verify-card__frame::after {
-  content: '';
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-}
-
-.verify-card__frame::before {
-  top: -2px;
-  left: -2px;
-  border-right: none;
-  border-bottom: none;
-  border-top-left-radius: 16px;
-}
-
-.verify-card__frame::after {
-  bottom: -2px;
-  right: -2px;
-  border-left: none;
-  border-top: none;
-  border-bottom-right-radius: 16px;
-}
-
-.verify-card__avatar {
-  width: 200px;
-  height: 200px;
-  background: linear-gradient(180deg, rgba(140, 192, 67, 0.3) 0%, rgba(140, 192, 67, 0.1) 100%);
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.verify-card__avatar::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at 50% 30%, rgba(140, 192, 67, 0.4) 0%, transparent 50%);
-}
-
-.verify-card__avatar-icon {
-  position: relative;
-  z-index: 1;
+  max-width: 500px;
+  height: auto;
+  object-fit: contain;
 }
 
 /* Responsive Design */
@@ -220,8 +150,8 @@
     font-size: 40px;
   }
 
-  .verify-card {
-    max-width: 350px;
+  .verify-account__image {
+    max-width: 400px;
   }
 }
 
@@ -251,17 +181,7 @@
     width: 100%;
   }
 
-  .verify-card {
+  .verify-account__image {
     max-width: 100%;
-  }
-
-  .verify-card__avatar {
-    width: 160px;
-    height: 160px;
-  }
-
-  .verify-card__avatar-icon svg {
-    width: 60px;
-    height: 60px;
   }
 }
