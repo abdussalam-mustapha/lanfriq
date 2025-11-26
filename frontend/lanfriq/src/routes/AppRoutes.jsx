@@ -13,6 +13,7 @@ import Offers from '../pages/offers/Offers'
 import Favorites from '../pages/favorites/Favorites'
 import Profile from '../pages/profile/Profile'
 import Notifications from '../pages/notifications/Notifications'
+import Wallet from '../pages/wallet/Wallet'
 import AppLayout from '../components/layout/AppLayout'
 
 const AppRoutes = () => {
@@ -29,6 +30,7 @@ const AppRoutes = () => {
       {/* App Routes with Sidebar Layout */}
       <Route path="/marketplace" element={<AppLayout><Marketplace /></AppLayout>} />
       <Route path="/marketplace/property/:id" element={<AppLayout><PropertyDetails /></AppLayout>} />
+      <Route path="/wallet" element={<AppLayout><Wallet /></AppLayout>} />
       <Route path="/tokenization-hub" element={<AppLayout><TokenizationHub /></AppLayout>} />
       <Route path="/assets" element={<AppLayout><MyAssets /></AppLayout>} />
       <Route path="/offers" element={<AppLayout><Offers /></AppLayout>} />
