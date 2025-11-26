@@ -189,3 +189,4 @@ const TokenizationHub = () => {
   )
 }
 
+export default TokenizationHub

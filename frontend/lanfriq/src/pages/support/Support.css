@@ -1,0 +1,124 @@
+.support-page {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  min-height: calc(100vh - 4rem);
+  display: flex;
+  flex-direction: column;
+}
+
+.support-page__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+}
+
+.support-page__title-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.support-page__icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(140, 192, 67, 0.1);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8cc043;
+}
+
+.support-page__header h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+[data-theme="light"] .support-page__header h1 {
+  color: #000000;
+}
+
+.support-page__empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem;
+}
+
+.support-page__empty-icon {
+  width: 120px;
+  height: 120px;
+  background: rgba(140, 192, 67, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8cc043;
+  margin-bottom: 2rem;
+}
+
+.support-page__empty h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 1rem 0;
+}
+
+[data-theme="light"] .support-page__empty h2 {
+  color: #000000;
+}
+
+.support-page__empty p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  max-width: 500px;
+  margin: 0;
+  line-height: 1.6;
+}
+
+[data-theme="light"] .support-page__empty p {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.support-page__empty a {
+  color: #8cc043;
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity 0.2s ease;
+}
+
+.support-page__empty a:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .support-page {
+    padding: 1.5rem 1rem;
+  }
+
+  .support-page__empty {
+    padding: 2rem 1rem;
+  }
+
+  .support-page__empty h2 {
+    font-size: 1.5rem;
+  }
+
+  .support-page__empty-icon {
+    width: 100px;
+    height: 100px;
+  }
+
+  .support-page__empty-icon svg {
+    width: 48px;
+    height: 48px;
+  }
+}
