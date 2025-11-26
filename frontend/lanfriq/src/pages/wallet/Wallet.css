@@ -478,6 +478,28 @@
   border-top: none;
 }
 
+.wallet__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.wallet__swap-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.wallet__swap-section label {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+[data-theme="light"] .wallet__swap-section label {
+  color: rgba(0, 0, 0, 0.7);
+}
+
 .wallet__form-group {
   display: flex;
   flex-direction: column;
