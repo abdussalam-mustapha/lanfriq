@@ -650,6 +650,10 @@
   font-weight: 500;
 }
 
+[data-theme="light"] .wallet__swap-amount {
+  color: #000000;
+}
+
 .wallet__swap-toggle {
   width: 40px;
   height: 40px;
