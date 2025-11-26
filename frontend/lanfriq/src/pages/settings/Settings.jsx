@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Settings as SettingsIcon, Upload, Shield } from 'lucide-react';
+import { Settings as SettingsIcon, Upload, Shield, Copy, KeyRound, Mail } from 'lucide-react';
 import './Settings.css';
 
 const Settings = () => {
@@ -113,7 +113,9 @@ const Settings = () => {
                   value={profileData.email}
                   onChange={(e) => handleProfileChange('email', e.target.value)}
                 />
-                <button className="settings-section__copy-btn">📋</button>
+                <button className="settings-section__copy-btn">
+                  <Copy size={16} />
+                </button>
               </div>
             </div>
 
@@ -246,7 +248,7 @@ const Settings = () => {
 
             <div className="security-item">
               <div className="security-item__icon" style={{ background: 'rgba(140, 192, 67, 0.1)' }}>
-                <span style={{ fontSize: '1.5rem' }}>2️⃣</span>
+                <KeyRound size={24} />
               </div>
               <div className="security-item__content">
                 <h3>2-Step authentication</h3>
@@ -259,7 +261,7 @@ const Settings = () => {
 
             <div className="security-item">
               <div className="security-item__icon">
-                <span style={{ fontSize: '1.5rem' }}>📧</span>
+                <Mail size={24} />
               </div>
               <div className="security-item__content">
                 <h3>Email verification</h3>
