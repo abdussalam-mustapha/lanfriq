@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { Search, Eye } from 'lucide-react';
 import NFTDetailsModal from '../../components/modals/NFTDetailsModal';
+import nft1 from '../../assets/nft1.png';
+import nft2 from '../../assets/nft2.png';
+import nft3 from '../../assets/nft3.png';
 import './NFT.css';
 
 const NFT = () => {
@@ -12,7 +15,7 @@ const NFT = () => {
     {
       id: 1,
       name: 'Lanfriq-#1234',
-      image: '/nft-1.jpg',
+      image: nft1,
       price: '0.0000123 ETH',
       chain: 'Ethereum',
       smartContract: '0x6bC9...fD8E',
@@ -21,7 +24,7 @@ const NFT = () => {
     {
       id: 2,
       name: 'Lanfriq-#1234',
-      image: '/nft-2.jpg',
+      image: nft2,
       price: '0.0000123 ETH',
       chain: 'Polygon',
       smartContract: '0x6bC9...fD8E',
@@ -30,7 +33,7 @@ const NFT = () => {
     {
       id: 3,
       name: 'Lanfriq-#1234',
-      image: '/nft-3.jpg',
+      image: nft3,
       price: '0.0000123 ETH',
       chain: 'Linea',
       smartContract: '0x6bC9...fD8E',
@@ -39,7 +42,7 @@ const NFT = () => {
     {
       id: 4,
       name: 'Lanfriq-#1234',
-      image: '/nft-4.jpg',
+      image: nft3,
       price: '0.0000123 ETH',
       chain: 'Linea',
       smartContract: '0x6bC9...fD8E',
@@ -48,7 +51,7 @@ const NFT = () => {
     {
       id: 5,
       name: 'Lanfriq-#1234',
-      image: '/nft-5.jpg',
+      image: nft1,
       price: '0.0000123 ETH',
       chain: 'Ethereum',
       smartContract: '0x6bC9...fD8E',
@@ -57,7 +60,7 @@ const NFT = () => {
     {
       id: 6,
       name: 'Lanfriq-#1234',
-      image: '/nft-6.jpg',
+      image: nft1,
       price: '0.0000123 ETH',
       chain: 'Ethereum',
       smartContract: '0x6bC9...fD8E',
@@ -101,21 +104,17 @@ const NFT = () => {
       </div>
 
       <div className="nft-page__hero">
-        <h2>Discover verified real estate opportunities across Africa with blockchain-backed trust.</h2>
-        <button className="nft-page__explore-btn">
-          Explore market →
-        </button>
-      </div>
-
-      <div className="nft-page__search">
-        <div className="nft-page__search-input">
-          <Search size={20} />
-          <input
-            type="text"
-            placeholder="Search NFTs..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
+        <div className="nft-page__hero-content">
+          <div className="nft-page__hero-left">
+            <h2>Discover opportunities<br />in the modern market.</h2>
+            <p>Explore Lanfriq's marketplace</p>
+            <button className="nft-page__explore-btn">
+              Explore market →
+            </button>
+          </div>
+          <div className="nft-page__hero-right">
+            <div className="nft-page__hero-pattern"></div>
+          </div>
         </div>
       </div>
 
@@ -128,9 +127,6 @@ const NFT = () => {
           >
             <div className="nft-card__image">
               <img src={nft.image} alt={nft.name} />
-              <button className="nft-card__view-btn">
-                <Eye size={18} />
-              </button>
             </div>
             <div className="nft-card__content">
               <h3>{nft.name}</h3>

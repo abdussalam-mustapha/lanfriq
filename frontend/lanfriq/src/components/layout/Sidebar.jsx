@@ -22,7 +22,7 @@ const Sidebar = () => {
       items: [
         { path: '/my-assets', icon: Home, label: 'Assets' },
         { path: '/tokenization-hub', icon: Package, label: 'Tokenization Hub' },
-        { path: '/favorites', icon: Heart, label: 'Favorites' },
+        { path: '/nft', icon: Package, label: 'NFTs' },
         { path: '/wishlist', icon: Heart, label: 'Wishlist' }
       ]
     },
