@@ -7,6 +7,7 @@ import transparentValuation from '../../assets/transparentValuation.png'
 import nftOwnershipReceipt from '../../assets/NFTOwnershipReceipt.png'
 import secureVerificationWorkflow from '../../assets/SecureVerificationWorkflow.png'
 import './Features.css'
+import { motion } from "motion/react"
 
 const Features = () => {
   const features = [
@@ -55,13 +56,24 @@ const Features = () => {
       
       <div className="features__grid">
         {features.map((feature, index) => (
-          <div key={index} className="feature-card">
+          <motion.div 
+            key={index}
+            className="feature-card"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{
+              duration: 0.6,
+              delay: index * 0.12, // stagger effect
+              ease: "easeOut"
+            }}
+          >
             <div className="feature-card__image">
               <img src={feature.image} alt={feature.title} />
             </div>
             <h3 className="feature-card__title">{feature.title}</h3>
             <p className="feature-card__description">{feature.description}</p>
-          </div>
+          </motion.div>
         ))}
       </div>
     </Section>
