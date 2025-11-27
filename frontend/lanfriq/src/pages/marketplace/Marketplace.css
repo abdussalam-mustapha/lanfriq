@@ -1,0 +1,331 @@
+.marketplace {
+  width: 100%;
+}
+
+.marketplace__header {
+  margin-bottom: 2.5rem;
+}
+
+.marketplace__title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+}
+
+.marketplace__subtitle {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.marketplace__featured {
+  background: linear-gradient(135deg, rgba(140, 192, 67, 0.15) 0%, rgba(140, 192, 67, 0.05) 100%);
+  border: 1px solid rgba(140, 192, 67, 0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  margin-bottom: 3rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.marketplace__featured:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(140, 192, 67, 0.2);
+}
+
+.marketplace__featured-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.marketplace__featured-info {
+  flex: 1;
+}
+
+.marketplace__featured-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.marketplace__featured-thumb {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.marketplace__featured-name {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.marketplace__verified-icon {
+  color: #8cc043;
+}
+
+.marketplace__featured-value {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.marketplace__featured-timer {
+  display: flex;
+  gap: 1rem;
+}
+
+.marketplace__timer-box {
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 0.75rem 1.25rem;
+  text-align: center;
+  min-width: 80px;
+}
+
+.marketplace__timer-value {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.marketplace__timer-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.marketplace__buy-btn {
+  background-color: #8cc043;
+  color: #000;
+  border: none;
+  border-radius: 12px;
+  padding: 1rem 3rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.marketplace__buy-btn:hover {
+  background-color: #7ab032;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 16px rgba(140, 192, 67, 0.3);
+}
+
+.marketplace__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.marketplace__card {
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.marketplace__card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(140, 192, 67, 0.3);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.marketplace__card-image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.marketplace__card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.marketplace__card:hover .marketplace__card-image {
+  transform: scale(1.05);
+}
+
+.marketplace__card-favorite {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 1;
+}
+
+.marketplace__card-favorite:hover {
+  background-color: rgba(140, 192, 67, 0.2);
+  color: #8cc043;
+  transform: scale(1.1);
+}
+
+.marketplace__card-content {
+  padding: 1.25rem;
+}
+
+.marketplace__card-header {
+  margin-bottom: 1rem;
+}
+
+.marketplace__card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.marketplace__card-verified {
+  color: #8cc043;
+  flex-shrink: 0;
+}
+
+.marketplace__card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.marketplace__card-owner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.marketplace__card-owner-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8cc043 0%, #7ab032 100%);
+  flex-shrink: 0;
+}
+
+.marketplace__owner-verified {
+  color: #8cc043;
+  flex-shrink: 0;
+}
+
+.marketplace__card-value {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+@media (max-width: 1024px) {
+  .marketplace__featured-content {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .marketplace__buy-btn {
+    width: 100%;
+  }
+
+  .marketplace__timer-box {
+    min-width: 70px;
+    padding: 0.625rem 1rem;
+  }
+
+  .marketplace__timer-value {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .marketplace__header {
+    margin-bottom: 1.5rem;
+  }
+
+  .marketplace__title {
+    font-size: 1.75rem;
+  }
+
+  .marketplace__featured {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .marketplace__featured-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .marketplace__featured-thumb {
+    width: 48px;
+    height: 48px;
+  }
+
+  .marketplace__featured-name {
+    font-size: 1.125rem;
+  }
+
+  .marketplace__featured-timer {
+    gap: 0.75rem;
+  }
+
+  .marketplace__timer-box {
+    min-width: 60px;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .marketplace__timer-value {
+    font-size: 1.125rem;
+  }
+
+  .marketplace__grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .marketplace__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .marketplace__timer-box {
+    min-width: 50px;
+    padding: 0.5rem;
+  }
+
+  .marketplace__timer-value {
+    font-size: 1rem;
+  }
+
+  .marketplace__timer-label {
+    font-size: 0.625rem;
+  }
+}

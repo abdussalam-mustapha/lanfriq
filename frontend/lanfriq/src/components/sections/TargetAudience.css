@@ -109,6 +109,27 @@
 
 .mobile_show{
   display: none;
+  font-family: var(--font-outfit);
+  font-size: 16px;
+  font-weight: 400;
+  color: #000000;
+  background-color: #8CC043;
+  border: 1px solid #8CC043;
+  border-radius: 5px;
+  padding: 11px 41px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  width: 186px;
+  height: 45px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn--cta:hover {
+  background-color: #7FB519;
+  border-color: #7FB519;
 }
 
 .mobile_hide{

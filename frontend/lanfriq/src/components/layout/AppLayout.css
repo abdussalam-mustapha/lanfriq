@@ -1,0 +1,153 @@
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--background);
+  transition: background-color 0.3s ease;
+}
+
+[data-theme="dark"] .app-layout {
+  background-color: #000000;
+}
+
+[data-theme="light"] .app-layout {
+  background-color: #f8f8f8;
+}
+
+.app-layout__main {
+  flex: 1;
+  margin-left: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-layout__header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: var(--background);
+  border-bottom: 1px solid var(--color-border, rgba(0, 0, 0, 0.08));
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .app-layout__header {
+  background-color: rgba(26, 26, 26, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="light"] .app-layout__header {
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+.app-layout__header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.app-layout__header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.app-layout__connect-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(140, 192, 67, 0.1);
+  border: 1px solid rgba(140, 192, 67, 0.3);
+  border-radius: 24px;
+  padding: 0.5rem 1rem;
+  color: #8cc043;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.app-layout__connect-btn:hover {
+  background: rgba(140, 192, 67, 0.15);
+  border-color: #8cc043;
+}
+
+.app-layout__icon-btn {
+  position: relative;
+  background: rgba(255, 255, 255, 0.05);
+  border: none;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+[data-theme="light"] .app-layout__icon-btn {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.app-layout__icon-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .app-layout__icon-btn:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.app-layout__notification-btn {
+  position: relative;
+}
+
+.app-layout__notification-badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background-color: #ff4444;
+  color: #fff;
+  font-size: 0.625rem;
+  font-weight: 600;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+}
+
+.app-layout__content {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .app-layout__main {
+    margin-left: 70px;
+  }
+
+  .app-layout__header {
+    padding: 1rem;
+  }
+
+  .app-layout__content {
+    padding: 1.5rem 1rem;
+  }
+
+  .app-layout__header-left {
+    display: none;
+  }
+}

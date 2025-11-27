@@ -1,6 +1,11 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
+    <script>
+      // Set dark theme immediately to prevent flash
+      const theme = localStorage.getItem('lanfriq-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', theme);
+    </script>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./src/assets/LanfriqLogoFooter.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

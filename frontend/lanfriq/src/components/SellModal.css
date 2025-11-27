@@ -1,0 +1,391 @@
+.sell-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+  backdrop-filter: blur(4px);
+}
+
+.sell-modal {
+  background: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="light"] .sell-modal {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.sell-modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.sell-modal__title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+[data-theme="light"] .sell-modal__title {
+  color: #000000;
+}
+
+.sell-modal__close {
+  background: rgba(255, 255, 255, 0.05);
+  border: none;
+  border-radius: 8px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+[data-theme="light"] .sell-modal__close {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.sell-modal__close:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="light"] .sell-modal__close:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+/* Asset Info */
+.sell-modal__asset-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+[data-theme="light"] .sell-modal__asset-info {
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.sell-modal__asset-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.sell-modal__image-placeholder {
+  width: 100%;
+  height: 100%;
+  background: rgba(140, 192, 67, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+}
+
+.sell-modal__asset-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.sell-modal__asset-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .sell-modal__asset-name {
+  color: #000000;
+}
+
+.sell-modal__asset-token {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+[data-theme="light"] .sell-modal__asset-token {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/* Toggle Group */
+.sell-modal__toggle-group {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.sell-modal__toggle-btn {
+  flex: 1;
+  padding: 0.875rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: var(--text-primary);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+[data-theme="light"] .sell-modal__toggle-btn {
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #000000;
+}
+
+.sell-modal__toggle-btn:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="light"] .sell-modal__toggle-btn:hover:not(.active) {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.sell-modal__toggle-btn.active {
+  background: #8cc043;
+  border-color: #8cc043;
+  color: #000;
+}
+
+/* Price Info */
+.sell-modal__price-info {
+  background: rgba(140, 192, 67, 0.1);
+  border: 1px solid rgba(140, 192, 67, 0.2);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sell-modal__price-label {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+[data-theme="light"] .sell-modal__price-label {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.sell-modal__price-value {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #8cc043;
+}
+
+/* Form Group */
+.sell-modal__form-group {
+  margin-bottom: 1.5rem;
+}
+
+.sell-modal__label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+[data-theme="light"] .sell-modal__label {
+  color: #000000;
+}
+
+.sell-modal__label-note {
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+[data-theme="light"] .sell-modal__label-note {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.sell-modal__input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.sell-modal__input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 0.875rem 4rem 0.875rem 1rem;
+  color: var(--text-primary);
+  font-size: 0.9375rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+[data-theme="light"] .sell-modal__input {
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #000000;
+}
+
+.sell-modal__input:focus {
+  border-color: #8cc043;
+  background: rgba(140, 192, 67, 0.05);
+}
+
+.sell-modal__input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="light"] .sell-modal__input::placeholder {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.sell-modal__input-suffix {
+  position: absolute;
+  right: 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  pointer-events: none;
+}
+
+[data-theme="light"] .sell-modal__input-suffix {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.sell-modal__input-help {
+  margin-top: 0.5rem;
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+}
+
+[data-theme="light"] .sell-modal__input-help {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/* Total */
+.sell-modal__total {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+[data-theme="light"] .sell-modal__total {
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.sell-modal__total-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+[data-theme="light"] .sell-modal__total-label {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.sell-modal__total-value {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #8cc043;
+}
+
+/* Actions */
+.sell-modal__actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.sell-modal__btn {
+  flex: 1;
+  padding: 0.875rem 1.5rem;
+  border-radius: 12px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.sell-modal__btn--cancel {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .sell-modal__btn--cancel {
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #000000;
+}
+
+.sell-modal__btn--cancel:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="light"] .sell-modal__btn--cancel:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.sell-modal__btn--sell {
+  background: #8cc043;
+  color: #000;
+}
+
+.sell-modal__btn--sell:hover {
+  background: #7ab032;
+  transform: translateY(-1px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sell-modal {
+    padding: 1.5rem;
+    max-width: 100%;
+  }
+
+  .sell-modal__title {
+    font-size: 1.25rem;
+  }
+
+  .sell-modal__actions {
+    flex-direction: column;
+  }
+
+  .sell-modal__btn {
+    width: 100%;
+  }
+}

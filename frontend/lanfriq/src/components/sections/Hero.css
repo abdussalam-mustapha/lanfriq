@@ -4,7 +4,26 @@
   background-position: center top;
   background-repeat: no-repeat;
   padding: 57px 0 200px;
-  overflow: visible;
+  overflow: hidden;
+  width: 100%;
+}
+
+.hero__grid-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: auto;
+  overflow: hidden;
+}
+
+.hero__grid-cell {
+  position: absolute;
+  cursor: pointer;
+  border-radius: 4px;
+  pointer-events: auto;
 }
 
 .hero__content {
@@ -16,6 +35,8 @@
   flex-direction: column;
   align-items: center;
   gap: 30px;
+  position: relative;
+  z-index: 2;
 }
 
 .hero__title {
@@ -49,6 +70,8 @@
   position: relative;
   z-index: 10;
   padding-bottom: 60px;
+  overflow: visible;
+  width: 100%;
 }
 
 .hero__image {

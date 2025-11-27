@@ -65,13 +65,13 @@ const HowItWorks = () => {
           const stepImage = theme === 'light' ? step.imageLight : step.imageDark
           
           return (
-            <Card key={index} variant="feature" className="step-card">
+            <div key={index} className="step-card">
               <div className="step-card__image">
                 <img src={stepImage} alt={step.title} />
               </div>
               <h3 className="step-card__title">{step.title}</h3>
               <p className="step-card__description">{step.description}</p>
-            </Card>
+            </div>
           )
         })}
       </div>

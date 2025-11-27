@@ -1,15 +1,19 @@
 .cta-section {
-  background: radial-gradient(
-    ellipse at center,
-    var(--hero-gradient-start),
-    var(--hero-gradient-end)
-  );
-  padding: var(--spacing-3xl) 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 0;
   position: relative;
 }
 
 .cta-section .container {
   position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 20px;
+  overflow: hidden;
+  padding: var(--spacing-3xl) var(--spacing-xl);
 }
 
 .cta__content {

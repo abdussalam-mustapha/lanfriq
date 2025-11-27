@@ -1,3 +1,5 @@
+import { useState, useEffect, useRef } from 'react'
+import { motion } from 'framer-motion'
 import { useTheme } from '../../context/ThemeContext'
 import { ArrowRight } from 'lucide-react'
 import Header from '../layout/Header'
@@ -20,6 +22,59 @@ const Hero = () => {
   const { theme } = useTheme()
   const heroBg = theme === 'light' ? heroBgLight : heroBgDark
   const heroImg = theme === 'light' ? heroImgLight : heroImgDark
+  const heroRef = useRef(null)
+
+  // Generate grid cells based on hero dimensions
+  const cellSize = 100 // Larger cell size
+  const [gridDimensions, setGridDimensions] = useState({ cols: 0, rows: 0 })
+
+  useEffect(() => {
+    const updateGrid = () => {
+      if (heroRef.current) {
+        const width = heroRef.current.offsetWidth
+        const height = heroRef.current.offsetHeight
+        setGridDimensions({
+          cols: Math.ceil(width / cellSize),
+          rows: Math.ceil(height / cellSize)
+        })
+      }
+    }
+    
+    updateGrid()
+    window.addEventListener('resize', updateGrid)
+    return () => window.removeEventListener('resize', updateGrid)
+  }, [])
+
+  // Generate grid cells
+  const cells = []
+  for (let row = 0; row < gridDimensions.rows; row++) {
+    for (let col = 0; col < gridDimensions.cols; col++) {
+      const cellId = `${row}-${col}`
+      cells.push(
+        <motion.div
+          key={cellId}
+          className="hero__grid-cell"
+          style={{
+            left: col * cellSize,
+            top: row * cellSize,
+            width: cellSize,
+            height: cellSize,
+          }}
+          initial={{ backgroundColor: 'transparent' }}
+          whileHover={{ 
+            backgroundColor: 'rgba(168, 216, 95, 0.5)',
+            scale: 1.08,
+            transition: { duration: 1, ease: 'easeOut' }
+          }}
+          whileTap={{ 
+            backgroundColor: 'rgba(140, 192, 67, 0.7)',
+            scale: 0.95,
+            transition: { duration: 1, ease: 'easeOut' }
+          }}
+        />
+      )
+    }
+  }
 
   const partners = [
     { src: blockatron, alt: 'Blockatron' },
@@ -33,7 +88,10 @@ const Hero = () => {
 
   return (
     <>
-      <section className="hero" style={{ backgroundImage: `url(${heroBg})` }}>
+      <section className="hero" style={{ backgroundImage: `url(${heroBg})` }} ref={heroRef}>
+        <div className="hero__grid-overlay">
+          {cells}
+        </div>
         <Header />
         <div className="container">
           <div className="hero__content">

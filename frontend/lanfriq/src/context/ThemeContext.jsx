@@ -13,7 +13,13 @@ export const useTheme = () => {
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
     const savedTheme = localStorage.getItem('lanfriq-theme')
-    return savedTheme || 'light'
+    // If no theme is saved, set dark as default
+    if (!savedTheme) {
+      localStorage.setItem('lanfriq-theme', 'dark')
+      document.documentElement.setAttribute('data-theme', 'dark')
+      return 'dark'
+    }
+    return savedTheme
   })
 
   useEffect(() => {
