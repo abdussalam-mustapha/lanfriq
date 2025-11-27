@@ -4,9 +4,33 @@ import Section from '../ui/Section'
 import investorImg from '../../assets/WhoIsItForInvestor.png'
 import propertyOwnerImg from '../../assets/whoIsItForPropertyOwner.png'
 import businessImg from '../../assets/WhoIsItForBusinessAndFirms.png'
+import surveyorImg from '../../assets/surveyor_icon.svg'
 import './TargetAudience.css'
+import { motion } from "motion/react";
+
 
 const TargetAudience = () => {
+  const fadeUp = {
+    initial: { opacity: 0, y: 40 },
+    animate: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  };
+
+  const listItem = {
+    initial: { opacity: 0, x: -20 },
+    animate: i => ({
+      opacity: 1,
+      x: 0,
+      transition: { delay: i * 0.15 }
+    })
+  };
+
+  const zoomIn = {
+    initial: { opacity: 0, scale: 0.95 },
+    animate: { opacity: 1, scale: 1, transition: { duration: 0.6 } }
+  };
+
+
+
   return (
     <>
       {/* Section Header */}
@@ -24,21 +48,60 @@ const TargetAudience = () => {
       {/* Investors Section */}
       <Section id="investors" variant="default" className="audience-section">
         <div className="audience-section__content audience-section__content--reverse">
-          <div className="audience-section__image">
+          <div className="audience-section__image mobile_show">
             <img src={investorImg} alt="Investors" />
           </div>
-          <div className="audience-section__text">
+          <motion.div
+            variants={fadeUp}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            className="audience-section__text"
+          >
             <h2 className="audience-section__title">Investors</h2>
             <p className="audience-section__description">
-              Build wealth with fractional real estate. Break down the barriers to property ownership. Start investing in high-value real estate with any budget and earn passive income from property appreciation and rental yields.
+              Invest in real estate without needing large capital. Buy fractional property tokens, earn returns from property performance, and track your portfolio with full transparency.
             </p>
             <ul className="audience-section__features">
-              <li><CheckCheck size={16} strokeWidth={2} color="var(--color-primary)" /><span>Start investing with as little as $10.</span></li>
-              <li><CheckCheck size={16} strokeWidth={2} color="var(--color-primary)" /><span>Dividends paid directly to your wallet.</span></li>
-              <li><CheckCheck size={16} strokeWidth={2} color="var(--color-primary)" /><span>Own fractions of properties worldwide.</span></li>
-              <li><CheckCheck size={16} strokeWidth={2} color="var(--color-primary)" /><span>Trade your property tokens anytime, 24/7.</span></li>
+              <li>
+                <CheckCheck size={16} strokeWidth={2} color="var(--color-primary)" /> 
+                <span>
+                  Buy fractional property tokens
+                </span>
+              </li>
+              <li>
+                <CheckCheck size={16} strokeWidth={2} color="var(--color-primary)" />
+                <span>
+                  Receive NFT receipts as proof of ownership
+                </span>
+              </li>
+              <li>
+                <CheckCheck size={16} strokeWidth={2} color="var(--color-primary)" />
+                <span>
+                  Earn returns from rental income or appreciation
+                </span>
+              </li>
+              <li>
+                <CheckCheck size={16} strokeWidth={2} color="var(--color-primary)" />
+                <span>
+                  Resell tokens whenever you choose
+                </span>
+              </li>
             </ul>
-            <button className="btn btn--cta">Start Investing</button>
+            <button className="btn btn--cta">
+              Start Investing
+            </button>
+          </motion.div>
+          <div className="audience-section__image mobile_hide">
+            <motion.img
+              src={investorImg}
+              alt="Investors"
+              variants={zoomIn}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+            />
+
           </div>
         </div>
       </Section>
@@ -46,21 +109,63 @@ const TargetAudience = () => {
       {/* Property Owners Section */}
       <Section id="property-owners" variant="alt" className="audience-section">
         <div className="audience-section__content">
-          <div className="audience-section__text">
+          <div className="audience-section__image mobile_show">
+            <img src={propertyOwnerImg} alt="Property Owners" />
+          </div>
+          <motion.div
+            variants={fadeUp}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            className="audience-section__text"
+          >
             <h2 className="audience-section__title">Property Owners</h2>
             <p className="audience-section__description">
-              Unlock the liquid value of your home. Transform your illiquid real estate into tradeable digital assets. Tokenize your property to raise capital instantly, share ownership, or sell your asset faster than traditional markets allow.
+              Turn your physical property into digital tokens so you can raise funds, share ownership, or sell faster. Keep full visibility over investor activity and profit distribution.
             </p>
             <ul className="audience-section__features">
-              <li><CheckCheck size={16} strokeWidth={2} color="var(--color-primary)" /><span>Raise funds without selling the entire property.</span></li>
-              <li><CheckCheck size={16} strokeWidth={2} color="var(--color-primary)" /><span>Connect with investors from around the world.</span></li>
-              <li><CheckCheck size={16} strokeWidth={2} color="var(--color-primary)" /><span>Skip the long wait times of traditional listing.</span></li>
-              <li><CheckCheck size={16} strokeWidth={2} color="var(--color-primary)" /><span>Sell 1% or 100% of your asset—you decide.</span></li>
+              <li>
+                <CheckCheck size={16} strokeWidth={2} color="var(--color-primary)" />
+                <span>
+                  Upload and verify your property
+                </span>
+              </li>
+              <li>
+                <CheckCheck size={16} strokeWidth={2} color="var(--color-primary)" />
+                <span>
+                  Get professional valuation
+                </span>
+              </li>
+              <li>
+                <CheckCheck size={16} strokeWidth={2} color="var(--color-primary)" />
+                <span>
+                  Sell fractions to investors for capital
+                </span>
+              </li>
+              <li>
+                <CheckCheck size={16} strokeWidth={2} color="var(--color-primary)" />
+                <span>
+                  Tokenize the asset through an SPV
+                </span>
+              </li>
+              <li>
+                <CheckCheck size={16} strokeWidth={2} color="var(--color-primary)" />
+                <span>
+                  Manage profit updates and property performance
+                </span>
+              </li>
             </ul>
             <button className="btn btn--cta">Tokenize Your Home</button>
-          </div>
-          <div className="audience-section__image">
-            <img src={propertyOwnerImg} alt="Property Owners" />
+          </motion.div>
+          <div className="audience-section__image mobile_hide">
+            <motion.img
+              src={propertyOwnerImg}
+              alt="Property Owners"
+              variants={zoomIn}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+            />
           </div>
         </div>
       </Section>
@@ -69,21 +174,60 @@ const TargetAudience = () => {
       <Section id="businesses" variant="default" className="audience-section">
         <div className="audience-section__content audience-section__content--reverse">
           <div className="audience-section__image">
-            <img src={businessImg} alt="Businesses and Firms" />
+            <motion.img
+              src={businessImg}
+              alt="Businesses and Firms"
+              variants={zoomIn}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+            />
           </div>
-          <div className="audience-section__text">
+          <motion.div
+            variants={fadeUp}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            className="audience-section__text"
+          >
             <h2 className="audience-section__title">Businesses & Firms</h2>
             <p className="audience-section__description">
-              Digitize commercial assets for global scale. Bring your commercial portfolio on-chain. Attract a diverse network of global retail and institutional investors to fund developments or liquidate commercial holdings efficiently.
+              Tokenize commercial properties to unlock liquidity and attract multiple investors. Ideal for companies wanting to raise capital while keeping full structural control of their assets.
             </p>
             <ul className="audience-section__features">
-              <li><CheckCheck size={16} strokeWidth={2} color="var(--color-primary)" /><span>Tap into international capital markets.</span></li>
-              <li><CheckCheck size={16} strokeWidth={2} color="var(--color-primary)" /><span>Built-in regulatory checks for all investors.</span></li>
-              <li><CheckCheck size={16} strokeWidth={2} color="var(--color-primary)" /><span>Make commercial equity easier to trade.</span></li>
-              <li><CheckCheck size={16} strokeWidth={2} color="var(--color-primary)" /><span>Manage stakeholder voting via smart contracts.</span></li>
+              <li>
+                <CheckCheck size={16} strokeWidth={2} color="var(--color-primary)" />
+                <span>
+                  Convert commercial buildings into fractional tokens
+                </span>
+              </li>
+              <li>
+                <CheckCheck size={16} strokeWidth={2} color="var(--color-primary)" />
+                <span>
+                  Raise capital without selling entire assets
+                </span>
+              </li>
+              <li>
+                <CheckCheck size={16} strokeWidth={2} color="var(--color-primary)" />
+                <span>
+                  Automate profit distribution to investors
+                </span>
+              </li>
+              <li>
+                <CheckCheck size={16} strokeWidth={2} color="var(--color-primary)" />
+                <span>
+                  Track ownership and investor activity
+                </span>
+              </li>
+              <li>
+                <CheckCheck size={16} strokeWidth={2} color="var(--color-primary)" />
+                <span>
+                  Increase liquidity for long-term projects
+                </span>
+              </li>
             </ul>
-            <button className="btn btn--cta">Partner With Us</button>
-          </div>
+            <button className="btn btn--cta">Tokenize your Properties</button>
+          </motion.div>
         </div>
       </Section>
     </>

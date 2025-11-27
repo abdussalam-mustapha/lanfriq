@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "@tabler/icons-react": "^3.35.0",
+    "framer-motion": "^12.23.24",
     "lucide-react": "^0.554.0",
+    "motion": "^12.23.24",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },

@@ -13,6 +13,8 @@ import chainalysis from '../../assets/chainalysis.png'
 import hashgraph from '../../assets/hashgraph.png'
 import hedera from '../../assets/hedera.png'
 import './Hero.css'
+import { motion } from "motion/react"
+
 
 const Hero = () => {
   const { theme } = useTheme()
@@ -35,20 +37,47 @@ const Hero = () => {
         <Header />
         <div className="container">
           <div className="hero__content">
-            <h1 className="hero__title">
+            <motion.h1
+              className="hero__title"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+            >
               Invest in Real Estate,<br />
               One Token at a Time.
-            </h1>
-            <p className="hero__description">
+            </motion.h1>
+
+            <motion.p
+              className="hero__description"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.15, duration: 0.7, ease: "easeOut" }}
+            >
               Own fractions of professionally-valued properties through secure SPV structures — with transparent updates, real profit distribution, and NFT-backed receipts.
-            </p>
-            <div className="hero__actions">
-              <button className="btn btn--primary btn--large">
+            </motion.p>
+
+            <motion.div
+              className="hero__actions"
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: { delay: 0.25, staggerChildren: 0.15 }
+                }
+              }}
+            >
+              <motion.button className="btn btn--primary btn--large" variants={{ hidden: { y: 20 }, visible: { y: 0 } }}>
                 <span>Get Started</span>
                 <ArrowRight size={16} strokeWidth={1.4375} color="#ffffff" />
-              </button>
-              <button className="btn btn--secondary btn--large">Learn More</button>
-            </div>
+              </motion.button>
+
+              <motion.button className="btn btn--secondary btn--large" variants={{ hidden: { y: 20 }, visible: { y: 0 } }}>
+                Learn More
+              </motion.button>
+            </motion.div>
+
           </div>
         </div>
       </section>
@@ -56,7 +85,12 @@ const Hero = () => {
       <div className="hero__image-wrapper">
         <div className="container">
           <div className="hero__image">
-            <img src={heroImg} alt="Lanfriq Platform" />
+            <motion.img
+              src={heroImg}
+              alt="Lanfriq Platform"
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            />
           </div>
         </div>
       </div>
@@ -65,13 +99,26 @@ const Hero = () => {
         <div className="container">
           <div className="hero__partners">
             <p className="hero__partners-label">Trusted and backed by</p>
-            <div className="hero__partners-grid">
+            <motion.div
+              className="hero__partners-grid"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: { staggerChildren: 0.1 }
+                }
+              }}
+            >
               {partners.map((partner, index) => (
-                <div key={index} className="hero__partner">
+                <motion.div key={index} className="hero__partner" variants={{ hidden: { scale: 0.9, opacity: 0 }, visible: { scale: 1, opacity: 1 } }}>
                   <img src={partner.src} alt={partner.alt} />
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
+
           </div>
         </div>
       </section>
