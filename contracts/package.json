@@ -1,0 +1,29 @@
+{
+  "name": "lanfriq-contracts",
+  "version": "1.0.0",
+  "description": "Lanfriq Smart Contracts for Real Estate Tokenization on Camp Network",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy:testnet": "hardhat run scripts/deploy.js --network campTestnet",
+    "deploy:mainnet": "hardhat run scripts/deploy.js --network campMainnet",
+    "verify": "hardhat verify --network campTestnet",
+    "clean": "hardhat clean"
+  },
+  "keywords": [
+    "solidity",
+    "ethereum",
+    "smart-contracts",
+    "real-estate",
+    "tokenization",
+    "camp-network"
+  ],
+  "author": "Lanfriq Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "@openzeppelin/contracts": "^5.0.0",
+    "hardhat": "^2.19.0",
+    "dotenv": "^16.3.1"
+  }
+}
