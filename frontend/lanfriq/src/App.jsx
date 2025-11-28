@@ -5,6 +5,7 @@ import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit'
 import '@rainbow-me/rainbowkit/styles.css'
 import { ThemeProvider } from './context/ThemeContext'
 import { WalletProvider } from './context/WalletContext'
+import { CampProvider } from './context/CampContext'
 import { config } from './config/wagmi'
 import AppRoutes from './routes/AppRoutes'
 import './App.css'
@@ -24,7 +25,9 @@ function App() {
           <BrowserRouter>
             <ThemeProvider>
               <WalletProvider>
-                <AppRoutes />
+                <CampProvider clientId="fce77d7a-8085-47ca-adff-306a933e76aa">
+                  <AppRoutes />
+                </CampProvider>
               </WalletProvider>
             </ThemeProvider>
           </BrowserRouter>

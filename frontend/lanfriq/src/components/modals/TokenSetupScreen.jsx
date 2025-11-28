@@ -60,45 +60,46 @@ const TokenSetupScreen = ({ isOpen, onClose, onPublish, assetImage }) => {
   ];
 
   return (
-    <div className="token-setup">
-      <div className="token-setup__sidebar">
-        <div className="token-setup__header">
-          <h3>Token Setup</h3>
-        </div>
-
-        <div className="token-setup__collection">
-          <img src={assetImage || '/placeholder-property.jpg'} alt="Property" />
-          <div>
-            <h4>Hillside Token</h4>
-            <p>HED - HBAR201</p>
+    <div className="modal__backdrop" onClick={onClose}>
+      <div className="token-setup" onClick={(e) => e.stopPropagation()}>
+        <div className="token-setup__sidebar">
+          <div className="token-setup__header">
+            <h3>Token Setup</h3>
           </div>
+
+          <div className="token-setup__collection">
+            <img src={assetImage || '/placeholder-property.jpg'} alt="Property" />
+            <div>
+              <h4>Hillside Token</h4>
+              <p>HED - HBAR201</p>
+            </div>
+          </div>
+
+          <div className="token-setup__nav">
+            {navItems.map(item => {
+              const Icon = item.icon;
+              return (
+                <button
+                  key={item.id}
+                  className={tokenSetupSection === item.id ? 'active' : ''}
+                  onClick={() => setTokenSetupSection(item.id)}
+                >
+                  <Icon size={20} />
+                  {item.label}
+                </button>
+              );
+            })}
+          </div>
+
+          <button className="token-setup__publish" onClick={handlePublishClick}>
+            Publish
+          </button>
         </div>
 
-        <div className="token-setup__nav">
-          {navItems.map(item => {
-            const Icon = item.icon;
-            return (
-              <button
-                key={item.id}
-                className={tokenSetupSection === item.id ? 'active' : ''}
-                onClick={() => setTokenSetupSection(item.id)}
-              >
-                <Icon size={20} />
-                {item.label}
-              </button>
-            );
-          })}
-        </div>
-
-        <button className="token-setup__publish" onClick={handlePublishClick}>
-          Publish
-        </button>
-      </div>
-
-      <div className="token-setup__content">
-        <button className="modal__close" onClick={onClose} style={{ position: 'absolute', top: '2rem', right: '2rem' }}>
-          <X size={24} />
-        </button>
+        <div className="token-setup__content">
+          <button className="modal__close" onClick={onClose} style={{ position: 'absolute', top: '2rem', right: '2rem' }}>
+            <X size={24} />
+          </button>
 
         {tokenSetupSection === 'details' && (
           <div className="token-setup__section">
@@ -354,6 +355,7 @@ const TokenSetupScreen = ({ isOpen, onClose, onPublish, assetImage }) => {
           </div>
         )}
       </div>
+    </div>
     </div>
   );
 };

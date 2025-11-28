@@ -1,9 +1,12 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Settings as SettingsIcon, Upload, Shield, Copy, KeyRound, Mail } from 'lucide-react';
+import { useCamp } from '../../context/CampContext';
+import { Twitter, Music, Video } from 'lucide-react';
 import './Settings.css';
 
 const Settings = () => {
   const [activeTab, setActiveTab] = useState('profile');
+  const [tiktokHandle, setTiktokHandle] = useState('');
   const [profileData, setProfileData] = useState({
     firstName: 'Baskey',
     lastName: 'Koer',
@@ -22,6 +25,24 @@ const Settings = () => {
     address: 'Eke/185, Adedus, Ile- Omagba, Ibedan, Oyo-State'
   });
 
+  const {
+    isAuthenticated,
+    linkedSocials,
+    linkTwitter,
+    linkSpotify,
+    linkTikTok,
+    unlinkTwitter,
+    unlinkSpotify,
+    unlinkTikTok,
+    refreshLinkedSocials
+  } = useCamp();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      refreshLinkedSocials();
+    }
+  }, [isAuthenticated, activeTab]);
+
   const handleProfileChange = (field, value) => {
     setProfileData(prev => ({ ...prev, [field]: value }));
   };
@@ -36,6 +57,37 @@ const Settings = () => {
 
   const handleSaveKin = () => {
     console.log('Saving kin:', kinData);
+  };
+
+  const handleLinkTikTok = async () => {
+    if (!tiktokHandle.trim()) {
+      alert('Please enter your TikTok handle');
+      return;
+    }
+    try {
+      await linkTikTok(tiktokHandle);
+      await refreshLinkedSocials();
+      setTiktokHandle('');
+      alert('TikTok linked successfully!');
+    } catch (error) {
+      alert(`Failed to link TikTok: ${error.message}`);
+    }
+  };
+
+  const handleUnlinkSocial = async (social) => {
+    const confirmUnlink = window.confirm(`Are you sure you want to unlink ${social}?`);
+    if (!confirmUnlink) return;
+
+    try {
+      if (social === 'Twitter') await unlinkTwitter();
+      else if (social === 'Spotify') await unlinkSpotify();
+      else if (social === 'TikTok') await unlinkTikTok();
+      
+      await refreshLinkedSocials();
+      alert(`${social} unlinked successfully!`);
+    } catch (error) {
+      alert(`Failed to unlink ${social}: ${error.message}`);
+    }
   };
 
   return (
@@ -287,6 +339,114 @@ const Settings = () => {
               <button className="security-item__btn security-item__btn--change">
                 Change
               </button>
+            </div>
+
+            <h3 style={{ marginTop: '3rem', marginBottom: '1.5rem', fontSize: '1.125rem', color: 'var(--text-primary)' }}>
+              Social Accounts (Camp Network Origin)
+            </h3>
+
+            {!isAuthenticated && (
+              <div className="social-connect-warning">
+                <p>Connect your wallet to link social accounts for IPNFT minting</p>
+              </div>
+            )}
+
+            <div className="security-item">
+              <div className="security-item__icon" style={{ background: 'rgba(29, 161, 242, 0.1)', color: '#1DA1F2' }}>
+                <Twitter size={24} />
+              </div>
+              <div className="security-item__content">
+                <h3>Twitter / X</h3>
+                <p>Link your Twitter account to mint social IPNFTs from your tweets</p>
+              </div>
+              {linkedSocials.twitter ? (
+                <button 
+                  className="security-item__btn security-item__btn--active"
+                  onClick={() => handleUnlinkSocial('Twitter')}
+                >
+                  Linked
+                </button>
+              ) : (
+                <button 
+                  className="security-item__btn security-item__btn--change"
+                  onClick={linkTwitter}
+                  disabled={!isAuthenticated}
+                >
+                  Link
+                </button>
+              )}
+            </div>
+
+            <div className="security-item">
+              <div className="security-item__icon" style={{ background: 'rgba(30, 215, 96, 0.1)', color: '#1DB954' }}>
+                <Music size={24} />
+              </div>
+              <div className="security-item__content">
+                <h3>Spotify</h3>
+                <p>Link your Spotify account to mint IPNFTs from your music data</p>
+              </div>
+              {linkedSocials.spotify ? (
+                <button 
+                  className="security-item__btn security-item__btn--active"
+                  onClick={() => handleUnlinkSocial('Spotify')}
+                >
+                  Linked
+                </button>
+              ) : (
+                <button 
+                  className="security-item__btn security-item__btn--change"
+                  onClick={linkSpotify}
+                  disabled={!isAuthenticated}
+                >
+                  Link
+                </button>
+              )}
+            </div>
+
+            <div className="security-item">
+              <div className="security-item__icon" style={{ background: 'rgba(0, 0, 0, 0.1)' }}>
+                <Video size={24} />
+              </div>
+              <div className="security-item__content">
+                <h3>TikTok</h3>
+                <p>Link your TikTok account to mint IPNFTs from your content</p>
+                {!linkedSocials.tiktok && (
+                  <input
+                    type="text"
+                    placeholder="Enter TikTok handle"
+                    value={tiktokHandle}
+                    onChange={(e) => setTiktokHandle(e.target.value)}
+                    style={{
+                      marginTop: '0.5rem',
+                      padding: '0.5rem',
+                      borderRadius: '6px',
+                      border: '1px solid rgba(255, 255, 255, 0.1)',
+                      background: 'rgba(255, 255, 255, 0.03)',
+                      color: 'var(--text-primary)',
+                      fontSize: '0.875rem',
+                      width: '100%',
+                      maxWidth: '300px'
+                    }}
+                    disabled={!isAuthenticated}
+                  />
+                )}
+              </div>
+              {linkedSocials.tiktok ? (
+                <button 
+                  className="security-item__btn security-item__btn--active"
+                  onClick={() => handleUnlinkSocial('TikTok')}
+                >
+                  Linked
+                </button>
+              ) : (
+                <button 
+                  className="security-item__btn security-item__btn--change"
+                  onClick={handleLinkTikTok}
+                  disabled={!isAuthenticated || !tiktokHandle.trim()}
+                >
+                  Link
+                </button>
+              )}
             </div>
           </section>
         </div>
