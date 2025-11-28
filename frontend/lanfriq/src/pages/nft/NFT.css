@@ -39,6 +39,28 @@
   color: #000000;
 }
 
+.nft-page__refresh-btn {
+  background: rgba(140, 192, 67, 0.1);
+  border: 1px solid #8cc043;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  color: #8cc043;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nft-page__refresh-btn:hover:not(:disabled) {
+  background: rgba(140, 192, 67, 0.15);
+  transform: translateY(-1px);
+}
+
+.nft-page__refresh-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .nft-page__hero {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.1);

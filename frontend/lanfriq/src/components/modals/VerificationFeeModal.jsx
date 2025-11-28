@@ -4,14 +4,14 @@ const VerificationFeeModal = ({ isOpen, onClose, onPayment }) => {
   if (!isOpen) return null;
 
   const feeItems = [
-    { label: 'Document validation', amount: 30.00 },
-    { label: 'Authenticity check', amount: 30.00 },
-    { label: 'Legal verification', amount: 30.00 },
-    { label: 'Address + map', amount: 30.00 },
-    { label: 'Report generation', amount: 30.00 }
+    { label: 'Document validation', amount: 0.1 },
+    { label: 'Authenticity check', amount: 0.1 },
+    { label: 'Legal verification', amount: 0.1 },
+    { label: 'Address + map', amount: 0.1 },
+    { label: 'Report generation', amount: 0.1 }
   ];
 
-  const total = 30.00; // As per design
+  const total = 0.5; // 0.5 CAMP verification fee
 
   return (
     <div className="modal__backdrop" onClick={onClose}>
@@ -31,14 +31,14 @@ const VerificationFeeModal = ({ isOpen, onClose, onPayment }) => {
           {feeItems.map((item, index) => (
             <div key={index} className="verification-fee-modal__item">
               <span>{item.label}</span>
-              <strong>${item.amount.toFixed(2)}</strong>
+              <strong>{item.amount.toFixed(1)} CAMP</strong>
             </div>
           ))}
         </div>
 
         <div className="verification-fee-modal__total">
           <span>Total Amount</span>
-          <strong>${total.toFixed(2)}</strong>
+          <strong>{total.toFixed(1)} CAMP</strong>
         </div>
 
         <button className="verification-fee-modal__pay-btn" onClick={onPayment}>

@@ -111,20 +111,27 @@ const NFT = () => {
     }
   }, [isAuthenticated, origin, address, walletClient]);
 
+  // Auto-refresh on mount
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (address && walletClient) {
+        fetchContractNFTs();
+      }
+    }, 500);
+    return () => clearTimeout(timer);
+  }, []);
+
   const fetchContractNFTs = async () => {
     if (!walletClient || !address) return;
 
     try {
+      setIsLoading(true);
       const provider = new BrowserProvider(walletClient);
       const contract = getPropertyNFTContract(provider);
 
-      // Note: PropertyNFT doesn't have enumerable extension
-      // For now, we'll display a message to check specific token IDs
-      // In production, you'd track token IDs via events or a subgraph
-      
-      // Placeholder: Try to fetch a few token IDs (1-10)
+      // Try to fetch token IDs (1-20)
       const nfts = [];
-      for (let tokenId = 1; tokenId <= 10; tokenId++) {
+      for (let tokenId = 1; tokenId <= 20; tokenId++) {
         try {
           const owner = await contract.ownerOf(tokenId);
           
@@ -160,6 +167,8 @@ const NFT = () => {
       console.log('Found PropertyNFTs:', nfts.length);
     } catch (error) {
       console.error('Failed to fetch PropertyNFTs:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -276,8 +285,13 @@ const NFT = () => {
     }
   };
 
-  // Combine all NFT sources
-  const allNFTs = [...contractNFTs, ...userNFTs, ...nftData.slice(0, 3)]; // Show contract NFTs, IPNFTs, and 3 placeholders
+  // Combine all NFT sources - prioritize real data
+  const allNFTs = [
+    ...contractNFTs, // Real PropertyNFTs (highest priority)
+    ...userNFTs, // Real IPNFTs
+    // Only show placeholder if no real NFTs exist
+    ...(contractNFTs.length === 0 && userNFTs.length === 0 ? nftData.slice(0, 3) : [])
+  ];
 
   const filteredNFTs = allNFTs.filter(nft =>
     nft.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -308,6 +322,13 @@ const NFT = () => {
           </div>
           <h1>Asset</h1>
         </div>
+        <button 
+          className="nft-page__refresh-btn" 
+          onClick={() => fetchContractNFTs()}
+          disabled={isLoading}
+        >
+          {isLoading ? 'Loading...' : 'Refresh NFTs'}
+        </button>
       </div>
 
       <div className="nft-page__hero">
