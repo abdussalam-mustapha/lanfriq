@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { X, ArrowLeft } from 'lucide-react'
 import PurchaseSuccessModal from './PurchaseSuccessModal'
 import './BuyTokenModal.css'
@@ -9,12 +9,40 @@ const BuyTokenModal = ({ isOpen, onClose }) => {
   const minimum = 5000
   const maximum = 10000
 
-  const countdown = {
-    days: 10,
-    hours: 5,
-    mins: 5,
-    secs: 5
+  // Calculate countdown from a target end date (e.g., 10 days from now)
+  const getInitialEndTime = () => {
+    const now = new Date()
+    return new Date(now.getTime() + (10 * 24 * 60 * 60 * 1000)) // 10 days from now
   }
+
+  const [endTime] = useState(getInitialEndTime())
+  const [countdown, setCountdown] = useState({ days: 0, hours: 0, mins: 0, secs: 0 })
+
+  useEffect(() => {
+    if (!isOpen) return
+
+    const calculateTimeLeft = () => {
+      const now = new Date().getTime()
+      const distance = endTime.getTime() - now
+
+      if (distance < 0) {
+        setCountdown({ days: 0, hours: 0, mins: 0, secs: 0 })
+        return
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24))
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+      const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+      const secs = Math.floor((distance % (1000 * 60)) / 1000)
+
+      setCountdown({ days, hours, mins, secs })
+    }
+
+    calculateTimeLeft() // Initial calculation
+    const timer = setInterval(calculateTimeLeft, 1000) // Update every second
+
+    return () => clearInterval(timer)
+  }, [isOpen, endTime])
 
   const handleBuy = () => {
     setShowSuccess(true)

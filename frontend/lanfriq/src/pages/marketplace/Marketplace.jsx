@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Heart, CheckCircle } from 'lucide-react'
 import marketplaceimage from '../../assets/marketplaceimage.png'
@@ -6,6 +6,39 @@ import './Marketplace.css'
 
 const Marketplace = () => {
   const navigate = useNavigate()
+  
+  // Calculate countdown from a target end date (e.g., 10 days from now)
+  const getInitialEndTime = () => {
+    const now = new Date()
+    return new Date(now.getTime() + (10 * 24 * 60 * 60 * 1000)) // 10 days from now
+  }
+
+  const [endTime] = useState(getInitialEndTime())
+  const [countdown, setCountdown] = useState({ days: 0, hours: 0, mins: 0, secs: 0 })
+
+  useEffect(() => {
+    const calculateTimeLeft = () => {
+      const now = new Date().getTime()
+      const distance = endTime.getTime() - now
+
+      if (distance < 0) {
+        setCountdown({ days: 0, hours: 0, mins: 0, secs: 0 })
+        return
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24))
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+      const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+      const secs = Math.floor((distance % (1000 * 60)) / 1000)
+
+      setCountdown({ days, hours, mins, secs })
+    }
+
+    calculateTimeLeft() // Initial calculation
+    const timer = setInterval(calculateTimeLeft, 1000) // Update every second
+
+    return () => clearInterval(timer)
+  }, [endTime])
   
   const [properties] = useState([
     {
@@ -61,11 +94,7 @@ const Marketplace = () => {
   const featuredProperty = {
     name: 'TokenArt Treasures',
     image: marketplaceimage,
-    value: '500.07 USDT',
-    days: 10,
-    hours: 5,
-    mins: 5,
-    secs: 8
+    value: '500.07 USDT'
   }
 
   return (
@@ -94,19 +123,19 @@ const Marketplace = () => {
 
             <div className="marketplace__featured-timer">
               <div className="marketplace__timer-box">
-                <div className="marketplace__timer-value">{featuredProperty.days}</div>
+                <div className="marketplace__timer-value">{countdown.days}</div>
                 <div className="marketplace__timer-label">Days</div>
               </div>
               <div className="marketplace__timer-box">
-                <div className="marketplace__timer-value">{featuredProperty.hours}</div>
+                <div className="marketplace__timer-value">{countdown.hours}</div>
                 <div className="marketplace__timer-label">hrs</div>
               </div>
               <div className="marketplace__timer-box">
-                <div className="marketplace__timer-value">{featuredProperty.mins}</div>
+                <div className="marketplace__timer-value">{countdown.mins}</div>
                 <div className="marketplace__timer-label">mins</div>
               </div>
               <div className="marketplace__timer-box">
-                <div className="marketplace__timer-value">{featuredProperty.secs}</div>
+                <div className="marketplace__timer-value">{countdown.secs}</div>
                 <div className="marketplace__timer-label">secs</div>
               </div>
             </div>
