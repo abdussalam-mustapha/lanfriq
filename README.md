@@ -1,42 +1,37 @@
 # Lanfriq - Real Estate Tokenization Platform
 
-## 🌟 Project Overview
+## Project Overview
 
 Lanfriq is a comprehensive blockchain-based platform that revolutionizes real estate investment by enabling property owners to tokenize their assets using **Camp Network's Origin SDK** for intellectual property rights and custom smart contracts for fractional ownership. Investors can purchase property shares through a secure, transparent marketplace with full on-chain verification.
 
+### Why Lanfriq?
+
+Real estate in Africa faces critical challenges that hinder economic growth and property ownership:
+
+- **Land Disputes**: Over 90% of land in Africa is undocumented, leading to frequent ownership conflicts and legal battles
+- **Lack of Transparency**: Opaque land registries and manual record-keeping systems create opportunities for fraud and corruption
+- **Limited Access to Capital**: Traditional real estate investment requires significant capital, excluding millions from wealth-building opportunities
+- **Inefficient Verification**: Property verification processes are slow, expensive, and often unreliable
+- **Fraud and Title Issues**: Fake land documents and disputed titles cost investors billions annually
+
+Lanfriq addresses these challenges by providing:
+- **Immutable Ownership Records**: Blockchain-based property registration that cannot be altered or disputed
+- **Transparent Transactions**: All property transfers and ownership changes recorded on-chain
+- **Fractional Investment**: Lower barriers to entry through tokenized property shares
+- **Automated Verification**: Smart contract-based KYB/KYC and property validation
+- **Secure Trading**: P2P marketplace with built-in escrow and dispute resolution
+
 ### Key Features
-- 🏠 **Property Tokenization**: Dual-layer NFT system (IPNFT + PropertyNFT)
-- 🔐 **Camp Network Integration**: IP rights management via Origin SDK
-- 💰 **Fractional Ownership**: Buy and sell property shares on-chain
-- 📊 **Marketplace**: P2P trading with built-in royalty system
-- 🌐 **Multi-Chain Ready**: Currently on Camp Network Testnet
-- ✅ **Verification System**: KYB/KYC integration for compliance
+- **Property Tokenization**: Dual-layer NFT system (IPNFT + PropertyNFT)
+- **Camp Network Integration**: IP rights management via Origin SDK
+- **Fractional Ownership**: Buy and sell property shares on-chain
+- **Marketplace**: P2P trading with built-in royalty system
+- **Multi-Chain Ready**: Currently on Camp Network Testnet
+- **Verification System**: KYB/KYC integration for compliance
 
 ---
 
-## 🏗️ Architecture Overview
 
-### Dual NFT System
-
-Lanfriq uses a **unique dual-layer NFT architecture** combining Camp Network's IPNFT with custom PropertyNFT contracts:
-
-```
-┌─────────────────────────────────────────────────────────┐
-│                    User Property                         │
-└─────────────────────────────────────────────────────────┘
-                          │
-                          ├─────────────────┬──────────────────┐
-                          ▼                 ▼                  ▼
-                  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐
-                  │   IPNFT      │  │ PropertyNFT  │  │  Marketplace │
-                  │ (Camp Origin)│  │   (Custom)   │  │   Listing    │
-                  └──────────────┘  └──────────────┘  └──────────────┘
-                         │                  │                  │
-                         │                  │                  │
-                    IP Rights          Ownership          Trading
-                    Licensing          Shares             Shares
-                    Royalties          Transfer           Buy/Sell
-```
 
 ### Technology Stack
 
@@ -54,7 +49,7 @@ Lanfriq uses a **unique dual-layer NFT architecture** combining Camp Network's I
 - **Animations**: Framer Motion, AOS
 - **Icons**: Lucide React, Tabler Icons
 
-#### Smart Contracts (Deployed ✅)
+#### Smart Contracts (Deployed)
 - **Solidity**: ^0.8.20
 - **Development**: Hardhat ^2.22.0
 - **Security**: OpenZeppelin Contracts 5.0.0
@@ -68,65 +63,9 @@ PropertyNFT:         0x52719D5DA42707ec9ddD50A12A8Ec19bA3d1CF73
 PropertyMarketplace: 0xBd84e89001247CeDa92fb7763f67192cDd5dA185
 ```
 
----
-
-## 📁 Project Structure
-
-```
-lanfriq/
-├── frontend/lanfriq/          # React + Vite application
-│   ├── src/
-│   │   ├── components/        # Reusable UI components
-│   │   │   ├── layout/        # Header, Footer, MainLayout
-│   │   │   ├── sections/      # Landing page sections
-│   │   │   ├── modals/        # Modal components
-│   │   │   └── ui/            # Button, Card, Section
-│   │   ├── pages/             # Page components
-│   │   │   ├── landing/       # Landing page
-│   │   │   ├── marketplace/   # Property marketplace
-│   │   │   ├── tokenization-hub/  # Tokenization flow
-│   │   │   ├── nft/           # NFT gallery & marketplace
-│   │   │   ├── assets/        # User's portfolio
-│   │   │   ├── profile/       # User profile
-│   │   │   └── settings/      # Settings & social links
-│   │   ├── context/           # React Context providers
-│   │   │   ├── CampContext.jsx    # Camp Network integration
-│   │   │   ├── WalletContext.jsx  # Wallet management
-│   │   │   └── ThemeContext.jsx   # Theme switching
-│   │   ├── config/            # Configuration
-│   │   │   └── wagmi.js       # Wagmi + Camp Network config
-│   │   ├── utils/             # Utility functions
-│   │   │   ├── campUtils.js   # IPNFT operations
-│   │   │   └── contractUtils.js   # Smart contract interactions
-│   │   ├── contracts/         # Contract ABIs
-│   │   │   ├── PropertyNFT.json
-│   │   │   └── PropertyMarketplace.json
-│   │   └── routes/            # Routing configuration
-│   └── .env                   # Environment variables
-├── contracts/                 # Solidity smart contracts ✅
-│   ├── contracts/
-│   │   ├── PropertyNFT.sol         # Property tokenization
-│   │   └── PropertyMarketplace.sol # P2P marketplace
-│   ├── scripts/
-│   │   └── deploy.js          # Deployment script
-│   ├── test/                  # Contract tests (23/34 passing)
-│   ├── deployments/           # Deployment info
-│   │   └── campTestnet.json   # Testnet deployment
-│   ├── hardhat.config.js      # Hardhat configuration
-│   └── .env                   # Private key & RPC
-├── backend/                   # (Empty - Future API)
-├── DEPLOYMENT_GUIDE.md        # Deployment instructions
-├── CAMP_NETWORK_INTEGRATION.md # Camp Network docs
-└── INTEGRATION_STATUS.md      # Integration checklist
-```
 
 ---
 
-## 🌐 Camp Network Integration
-
-### What is Camp Network?
-
-Camp Network is a blockchain platform focused on **intellectual property (IP) management** and licensing. Lanfriq leverages Camp Network's **Origin SDK** to add IP licensing capabilities to tokenized real estate.
 
 ### How Lanfriq Uses Camp Network
 
@@ -134,41 +73,13 @@ Camp Network is a blockchain platform focused on **intellectual property (IP) ma
 
 Every property tokenized on Lanfriq creates an **IPNFT** (Intellectual Property NFT) using Camp Network's Origin SDK:
 
-```javascript
-// From: src/utils/campUtils.js
-import { campModal } from '@campnetwork/origin';
-
-// Initialize Camp Modal
-campModal.init({
-  clientId: 'fce77d7a-8085-47ca-adff-306a933e76aa',
-  environment: 'DEVELOPMENT',
-  redirectUri: { /* ... */ }
-});
-
-// Mint IPNFT with licensing terms
-const ipnftTokenId = await mintPropertyIPNFT(
-  origin,
-  propertyFile,
-  {
-    name: 'Property Name',
-    description: 'Property description',
-    attributes: [/* property metadata */]
-  },
-  {
-    price: '0.001 CAMP',      // Access price
-    duration: 2628000,         // 30 days
-    royaltyBps: 1000,         // 10% royalty
-    paymentToken: zeroAddress  // Native CAMP
-  }
-);
-```
 
 **IPNFT Features:**
-- ✅ Programmable licensing terms
-- ✅ Revenue sharing (royalties)
-- ✅ Time-based access control
-- ✅ Derivative works support
-- ✅ Immutable IP rights on-chain
+- Programmable licensing terms
+- Revenue sharing (royalties)
+- Time-based access control
+- Derivative works support
+- Immutable IP rights on-chain
 
 #### 2. **Authentication with Camp Modal**
 
@@ -182,47 +93,20 @@ const origin = campModal.origin;
 ```
 
 **Authentication Features:**
-- 🔐 Wallet connection via RainbowKit + Camp Modal
-- 🔗 Social account linking (Twitter, Spotify, TikTok)
-- ✅ Single sign-on across Camp Network dApps
-- 🎨 Built-in UI for better UX
+- Wallet connection via RainbowKit + Camp Modal
+- Social account linking (Twitter, Spotify, TikTok)
+- Single sign-on across Camp Network dApps
+- Built-in UI for better UX
 
 #### 3. **Social Account Linking**
 
 Properties can be linked to social proof:
 
-```javascript
-// Link Twitter for verification
-await campModal.auth.linkTwitter();
-
-// Link Spotify for creator profiles
-await campModal.auth.linkSpotify();
-
-// Link TikTok for promotional content
-await campModal.auth.linkTikTok(handle);
-
-// Get linked accounts
-const socials = await campModal.auth.getLinkedSocials();
-// Returns: { twitter: boolean, spotify: boolean, tiktok: boolean }
-```
 
 #### 4. **Access Control & Revenue**
 
 IPNFTs enable access-based monetization:
 
-```javascript
-// Check if user has access
-const hasAccess = await checkIPNFTAccess(origin, tokenId, userAddress);
-
-// Buy access to property data
-await buyIPNFTAccess(origin, tokenId);
-
-// Get royalty information
-const { vault, balance } = await getRoyaltyInfo(origin, tokenId, owner);
-
-// Claim accumulated royalties
-await claimRoyalties(origin, tokenId, owner);
-```
 
 #### 5. **Camp Network Configuration**
 
@@ -246,20 +130,8 @@ export const campTestnet = defineChain({
 });
 ```
 
-### Camp Network Benefits
 
-| Feature | Traditional Approach | With Camp Network |
-|---------|---------------------|-------------------|
-| **IP Rights** | Off-chain legal docs | On-chain IPNFT |
-| **Licensing** | Manual contracts | Programmable terms |
-| **Royalties** | Payment processors | Automatic on-chain |
-| **Access Control** | Database permissions | Smart contract logic |
-| **Social Proof** | Separate verification | Native social linking |
-| **Revenue Sharing** | Complex splits | Built-in distribution |
-
----
-
-## 🏠 Property Tokenization Flow
+## Property Tokenization Flow
 
 ### Complete User Journey
 
@@ -291,7 +163,7 @@ export const campTestnet = defineChain({
        ├─> Configure license terms
        └─> MINT PROPERTY
 
-5. Dual NFT Minting ✅
+5. Dual NFT Minting
    ├─> Step 1: Mint IPNFT (Camp Network Origin)
    │   ├─> Upload property data to IPFS
    │   ├─> Create licensing terms
@@ -313,56 +185,6 @@ export const campTestnet = defineChain({
        └─> Property available for trading
 ```
 
-### Code Implementation
-
-#### PropertyNFT.sol (Custom Contract)
-```solidity
-contract PropertyNFT is ERC721, ERC721URIStorage, Ownable, Pausable {
-    struct Property {
-        address owner;
-        string propertyAddress;
-        uint256 valuation;
-        uint256 totalShares;
-        uint256 availableShares;
-        uint256 pricePerShare;
-        bool isVerified;
-        bytes32 verificationHash;
-    }
-    
-    function mintProperty(
-        address to,
-        string memory propertyAddress,
-        uint256 valuation,
-        uint256 totalShares,
-        uint256 pricePerShare,
-        string memory uri  // Links to IPNFT
-    ) public returns (uint256);
-}
-```
-
-#### PropertyMarketplace.sol (Trading Contract)
-```solidity
-contract PropertyMarketplace is Ownable, ReentrancyGuard {
-    struct Listing {
-        address seller;
-        uint256 propertyTokenId;
-        uint256 pricePerShare;
-        uint256 sharesAvailable;
-        address paymentToken;
-        bool isActive;
-    }
-    
-    // 2.5% marketplace fee
-    uint256 public marketplaceFeePercent = 250;
-    
-    function createListing(...) external;
-    function buyShares(...) external payable;
-    function makeOffer(...) external;
-}
-```
-
-#### TokenizationHub.jsx (Frontend Integration)
-```javascript
 // Dual minting process
 const handlePublish = async (tokenData) => {
   setMintingProgress(0);
@@ -394,7 +216,7 @@ const handlePublish = async (tokenData) => {
 
 
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -450,7 +272,7 @@ VITE_WALLETCONNECT_PROJECT_ID=<your-project-id>
 
 **Contracts (.env)**
 ```env
-# Deployer Private Key (⚠️ NEVER commit this!)
+# Deployer Private Key (NEVER commit this!)
 PRIVATE_KEY=<your-private-key>
 
 # Camp Network Testnet RPC
@@ -497,7 +319,7 @@ npm run dev
 
 ---
 
-## 🛠️ Smart Contract Development
+## Smart Contract Development
 
 ### Compile Contracts
 ```bash
@@ -509,7 +331,7 @@ npx hardhat compile
 ### Run Tests
 ```bash
 npx hardhat test
-# Currently: 23/34 tests passing ✅
+# Currently: 23/34 tests passing
 ```
 
 ### Deploy to Camp Testnet
@@ -552,7 +374,7 @@ npx hardhat run scripts/deploy.js --network campTestnet
 
 ---
 
-## 📚 API Reference
+## API Reference
 
 ### Contract Utilities (`src/utils/contractUtils.js`)
 
@@ -580,178 +402,14 @@ await transferPropertyShares(signer, tokenId, toAddress, shares);
 await updatePropertyValuation(signer, tokenId, newValuation);
 ```
 
-#### Marketplace Functions
-
-```javascript
-// Create a marketplace listing
-await createListing(signer, {
-  propertyTokenId: 1,
-  pricePerShare: ethers.parseEther("520"),
-  sharesAvailable: 100,
-  paymentToken: ethers.ZeroAddress  // Native CAMP
-});
-
-// Buy shares from listing
-await buyShares(signer, listingId, shareAmount, paymentToken, value);
-
-// Get listing details
-const listing = await getListing(provider, listingId);
-
-// Get marketplace fee
-const feePercent = await getMarketplaceFee(provider);
-// Returns: 250 (2.5%)
-```
-
-### Camp Network Utilities (`src/utils/campUtils.js`)
-
-```javascript
-// Mint IPNFT with licensing
-const tokenId = await mintPropertyIPNFT(
-  origin,
-  propertyFile,
-  {
-    name: "Luxury Apartment",
-    description: "Downtown property",
-    attributes: [/* ... */]
-  },
-  {
-    price: "0.001",
-    duration: 2628000,  // 30 days
-    royaltyBps: 1000,   // 10%
-    paymentToken: ethers.ZeroAddress
-  }
-);
-
-// Check IPNFT access
-const hasAccess = await checkIPNFTAccess(origin, tokenId, userAddress);
-
-// Buy IPNFT access
-await buyIPNFTAccess(origin, tokenId);
-
-// Get royalty info
-const { vault, balance } = await getRoyaltyInfo(origin, tokenId, owner);
-
-// Claim royalties
-await claimRoyalties(origin, tokenId, owner);
-```
-
----
-
-## 🧪 Testing
-
-### Running Frontend Tests
-```bash
-cd frontend/lanfriq
-npm run test
-```
-
-### Running Contract Tests
-```bash
-cd contracts
-npx hardhat test
-
-# Run specific test
-npx hardhat test test/PropertyNFT.test.js
-
-# Generate coverage report
-npx hardhat coverage
-```
-
-### Test Coverage Status
-
-| Contract | Coverage | Passing Tests |
-|----------|----------|---------------|
-| PropertyNFT | 70% | 15/20 |
-| PropertyMarketplace | 60% | 8/14 |
-| **Total** | **68%** | **23/34** |
-
----
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-#### 1. Wallet Not Connecting
-```bash
-# Clear RainbowKit cache
-localStorage.clear();
-
-# Check WalletConnect Project ID
-# Ensure VITE_WALLETCONNECT_PROJECT_ID is set
-```
-
-#### 2. Transaction Failing
-```bash
-# Insufficient gas
-# Solution: Get more CAMP from faucet
-
-# Wrong network
-# Solution: Switch to Camp Testnet (Chain ID: 123420001114)
-
-# Contract not approved
-# Solution: Approve PropertyNFT for Marketplace
-```
-
-#### 3. IPNFT Minting Fails
-```bash
-# Camp Network API error
-# Solution: Check VITE_CAMP_API_KEY and VITE_CAMP_CLIENT_ID
-
-# File too large
-# Solution: Compress images before upload (max 5MB)
-```
-
-#### 4. Build Errors
-```bash
-# Node version mismatch
-node --version  # Should be >= 18.x
-
-# Clear cache and reinstall
-rm -rf node_modules package-lock.json
-npm install
-```
-
-### Debug Mode
-
-Enable debug logging:
-```javascript
-// In src/utils/contractUtils.js
-const DEBUG = true;
-
-// In src/utils/campUtils.js
-campModal.init({
-  clientId: '...',
-  environment: 'DEVELOPMENT',
-  debug: true  // Enable debug logs
-});
-```
-
----
-
-## 🚢 Deployment
-
-### Frontend Deployment (Vercel/Netlify)
-
-1. **Build Production Bundle**
-```bash
-cd frontend/lanfriq
-npm run build
-# Output: dist/
-```
-
-2. **Deploy to Vercel**
-```bash
-npm install -g vercel
-vercel --prod
-```
 
 3. **Environment Variables**
 - Add all `VITE_*` variables in Vercel dashboard
-- ⚠️ Never expose private keys in frontend
+- Never expose private keys in frontend
 
 ### Contract Deployment (Mainnet)
 
-⚠️ **Before mainnet deployment:**
+**Before mainnet deployment:**
 - Complete security audit
 - Test thoroughly on testnet
 - Have emergency pause mechanisms
@@ -767,91 +425,43 @@ npx hardhat verify --network campMainnet <CONTRACT_ADDRESS>
 
 ---
 
-## 🏗️ Architecture Decisions
+## Architecture Decisions
 
 ### Why Dual NFT System?
 
 **IPNFT (Camp Network Origin):**
-- ✅ IP rights and licensing
-- ✅ Revenue sharing (royalties)
-- ✅ Access control
-- ✅ Derivative works
-- ❌ Not optimized for fractional ownership
+- IP rights and licensing
+- Revenue sharing (royalties)
+- Access control
+- Derivative works
+- Not optimized for fractional ownership
 
 **PropertyNFT (Custom Contract):**
-- ✅ Fractional ownership (shares)
-- ✅ Transfer management
-- ✅ Valuation tracking
-- ✅ Flexible marketplace integration
-- ❌ No built-in IP licensing
+- Fractional ownership (shares)
+- Transfer management
+- Valuation tracking
+- Flexible marketplace integration
+- No built-in IP licensing
 
 **Combined Benefits:**
-- 🎯 IP rights + fractional ownership
-- 🎯 Licensing revenue + share trading
-- 🎯 Social proof + on-chain verification
-- 🎯 Flexibility + security
+- IP rights + fractional ownership
+- Licensing revenue + share trading
+- Social proof + on-chain verification
+- Flexibility + security
 
-### Technology Choices
 
-| Decision | Rationale |
-|----------|-----------|
-| **React 19** | Modern features, server components ready |
-| **Vite** | Fast HMR, optimized builds |
-| **ethers.js v6** | Stable, well-documented, TypeScript support |
-| **wagmi + RainbowKit** | Best-in-class wallet UX |
-| **Camp Network** | IP management, social linking, testnet grants |
-| **Hardhat** | Industry standard for Solidity development |
-| **OpenZeppelin** | Battle-tested secure contract libraries |
 
----
+          
 
-## 📖 Additional Resources
+#
 
-- [Camp Network Documentation](https://docs.campnetwork.xyz)
-- [Origin SDK Guide](https://docs.campnetwork.xyz/origin)
-- [Hardhat Documentation](https://hardhat.org/docs)
-- [OpenZeppelin Contracts](https://docs.openzeppelin.com/contracts)
-- [Wagmi Documentation](https://wagmi.sh)
-- [RainbowKit Documentation](https://www.rainbowkit.com)
-
----
-
-## 🤝 Contributing
-
-We welcome contributions! Please follow these guidelines:
-
-### Branch Strategy
-- `main`: Production-ready code
-- `develop`: Integration branch
-- `feature/*`: New features
-- `bugfix/*`: Bug fixes
-- `hotfix/*`: Critical production fixes
-
-### Commit Convention
-```bash
-feat: Add marketplace listing modal
-fix: Resolve IPNFT minting error
-docs: Update README with deployment guide
-test: Add PropertyNFT tests
-refactor: Simplify contract utilities
-```
-
-### Pull Request Process
-1. Fork the repository
-2. Create feature branch
-3. Make changes with tests
-4. Submit PR with description
-5. Wait for review and approval
-
----
-
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## 📞 Support & Contact
+## Support & Contact
 
 - **Discord**: [Join Community](https://discord.gg/lanfriq)
 - **Twitter**: [@LanfriqHQ](https://twitter.com/lanfriqhq)
@@ -860,7 +470,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **Camp Network** - IP infrastructure and Origin SDK
 - **OpenZeppelin** - Secure smart contract libraries
@@ -869,6 +479,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Built with ❤️ by the Lanfriq Team**
+**Built by the Lanfriq Team**
 
 *Democratizing real estate investment through blockchain technology.*
