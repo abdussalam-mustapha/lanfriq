@@ -134,6 +134,74 @@
   margin: 0 auto;
 }
 
+/* Wallet Modal Dropdown */
+.app-layout__wallet-wrapper {
+  position: relative;
+}
+
+.app-layout__wallet-modal {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: rgba(26, 26, 26, 0.98);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 8px;
+  min-width: 180px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  animation: slideDown 0.2s ease-out;
+}
+
+[data-theme="light"] .app-layout__wallet-modal {
+  background: rgba(255, 255, 255, 0.98);
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.app-layout__wallet-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 16px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.app-layout__wallet-option:hover {
+  background: rgba(140, 192, 67, 0.1);
+  color: #8cc043;
+}
+
+.app-layout__wallet-option:last-child {
+  color: #ff4444;
+}
+
+.app-layout__wallet-option:last-child:hover {
+  background: rgba(255, 68, 68, 0.1);
+  color: #ff4444;
+}
+
 @media (max-width: 768px) {
   .app-layout__main {
     margin-left: 70px;

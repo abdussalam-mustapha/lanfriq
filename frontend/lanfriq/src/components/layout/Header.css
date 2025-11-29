@@ -221,10 +221,22 @@
   border-radius: 10px !important;
   box-shadow: none !important;
   color: var(--color-text-primary) !important;
+  pointer-events: auto !important;
 }
 
 .nav__connect-wallet button:hover {
   border-color: var(--color-primary) !important;
+}
+
+/* Ensure RainbowKit modal appears above everything */
+[data-rk] {
+  z-index: 99999 !important;
+}
+
+/* Fix RainbowKit dropdown positioning */
+.nav__connect-wallet {
+  position: relative;
+  z-index: 101;
 }
 
 @media (max-width: 1024px) {

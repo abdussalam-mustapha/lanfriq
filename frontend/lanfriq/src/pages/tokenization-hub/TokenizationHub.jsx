@@ -56,7 +56,19 @@ const TokenizationHub = () => {
     setShowFeeModal(true)
   }
 
-  const handlePayment = () => {
+  const handlePayment = async (txHash) => {
+    console.log('Payment successful! Transaction hash:', txHash)
+    
+    // Store transaction hash with property data
+    if (propertyData) {
+      setPropertyData({
+        ...propertyData,
+        verificationTxHash: txHash,
+        verificationPaid: true,
+        verificationPaidAt: new Date().toISOString(),
+      })
+    }
+    
     setShowFeeModal(false)
     setShowSubmittedModal(true)
   }
@@ -307,6 +319,7 @@ const TokenizationHub = () => {
         isOpen={showFeeModal}
         onClose={() => setShowFeeModal(false)}
         onPayment={handlePayment}
+        recipientAddress={import.meta.env.VITE_PLATFORM_WALLET_ADDRESS}
       />
 
       <PropertySubmittedModal
