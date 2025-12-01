@@ -6,7 +6,8 @@ const CreateListingModal = ({ nft, onClose, onSubmit }) => {
   const [formData, setFormData] = useState({
     pricePerShare: '',
     sharesAvailable: '',
-    paymentToken: '0x0000000000000000000000000000000000000000', // Native CAMP
+    paymentToken: 'CUSTOM', // Default to custom so user enters CAMP token address
+    customTokenAddress: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -17,6 +18,18 @@ const CreateListingModal = ({ nft, onClose, onSubmit }) => {
       alert('Please fill in all fields');
       return;
     }
+    
+    // Determine the actual payment token address
+    let paymentTokenAddress;
+    if (formData.paymentToken === 'NATIVE') {
+      paymentTokenAddress = '0x0000000000000000000000000000000000000000';
+    } else if (formData.paymentToken === 'CUSTOM') {
+      if (!formData.customTokenAddress) {
+        alert('Please enter the CAMP token contract address');
+        return;
+      }
+      paymentTokenAddress = formData.customTokenAddress;
+    }
 
     try {
       setIsSubmitting(true);
@@ -24,7 +37,7 @@ const CreateListingModal = ({ nft, onClose, onSubmit }) => {
         propertyTokenId: nft.tokenId,
         pricePerShare: formData.pricePerShare,
         sharesAvailable: parseInt(formData.sharesAvailable),
-        paymentToken: formData.paymentToken,
+        paymentToken: paymentTokenAddress,
       });
       onClose();
     } catch (error) {
@@ -86,17 +99,18 @@ const CreateListingModal = ({ nft, onClose, onSubmit }) => {
           <div className="form-group">
             <label>
               <TrendingUp size={18} />
-              Shares to List
+              Shares Available
             </label>
             <input
               type="number"
               name="sharesAvailable"
               value={formData.sharesAvailable}
               onChange={handleChange}
-              placeholder="100"
+              placeholder="Enter number of shares"
               max={nft.availableShares}
               required
             />
+            <small>Max available: {nft.availableShares || 'N/A'}</small>
           </div>
 
           <div className="form-group">
@@ -106,10 +120,28 @@ const CreateListingModal = ({ nft, onClose, onSubmit }) => {
               value={formData.paymentToken}
               onChange={handleChange}
             >
-              <option value="0x0000000000000000000000000000000000000000">
-                Native CAMP
+              <option value="CUSTOM">
+                CAMP ERC20 Token (Enter address below)
+              </option>
+              <option value="NATIVE">
+                Native Token (Not recommended - requires native balance)
               </option>
             </select>
+            {formData.paymentToken === 'CUSTOM' && (
+              <div style={{ marginTop: '0.5rem' }}>
+                <input
+                  type="text"
+                  name="customTokenAddress"
+                  value={formData.customTokenAddress}
+                  onChange={handleChange}
+                  placeholder="Enter CAMP token contract address (0x...)"
+                  required
+                />
+                <small style={{ display: 'block', marginTop: '0.25rem', color: 'var(--text-secondary)' }}>
+                  You can find the CAMP token address on Camp Network block explorer
+                </small>
+              </div>
+            )}
           </div>
 
           <div className="listing-summary">

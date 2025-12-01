@@ -367,6 +367,46 @@
   font-weight: 600;
 }
 
+.property-details__demo-notice {
+  padding: 0.75rem 1rem;
+  background-color: rgba(251, 191, 36, 0.1);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.property-details__demo-notice small {
+  color: #fbbf24;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+/* Green styling for real blockchain properties */
+.property-details__demo-notice--verified {
+  background-color: rgba(140, 192, 67, 0.1);
+  border-color: rgba(140, 192, 67, 0.3);
+}
+
+.property-details__demo-notice--verified small {
+  color: #8cc043;
+}
+
+[data-theme="light"] .property-details__demo-notice {
+  background-color: rgba(251, 191, 36, 0.05);
+}
+
+[data-theme="light"] .property-details__demo-notice small {
+  color: #d97706;
+}
+
+[data-theme="light"] .property-details__demo-notice--verified {
+  background-color: rgba(140, 192, 67, 0.05);
+}
+
+[data-theme="light"] .property-details__demo-notice--verified small {
+  color: #7ab032;
+}
+
 .property-details__buy-btn {
   width: 100%;
   padding: 1rem;

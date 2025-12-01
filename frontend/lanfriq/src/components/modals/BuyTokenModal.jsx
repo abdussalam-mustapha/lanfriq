@@ -1,13 +1,23 @@
 import { useState, useEffect } from 'react'
 import { X, ArrowLeft } from 'lucide-react'
+import { useAccount, useWalletClient } from 'wagmi'
+import { ethers } from 'ethers'
+import { BrowserProvider } from 'ethers'
+import { buyShares } from '../../utils/contractUtils'
 import PurchaseSuccessModal from './PurchaseSuccessModal'
 import './BuyTokenModal.css'
 
-const BuyTokenModal = ({ isOpen, onClose }) => {
+const BuyTokenModal = ({ isOpen, onClose, propertyId, pricePerShare, listingId }) => {
   const [amount, setAmount] = useState('')
   const [showSuccess, setShowSuccess] = useState(false)
-  const minimum = 5000
+  const [isPurchasing, setIsPurchasing] = useState(false)
+  const [purchaseError, setPurchaseError] = useState(null)
+  const [txHash, setTxHash] = useState(null)
+  const minimum = 60
   const maximum = 10000
+
+  const { address, isConnected } = useAccount()
+  const { data: walletClient } = useWalletClient()
 
   // Calculate countdown from a target end date (e.g., 10 days from now)
   const getInitialEndTime = () => {
@@ -44,19 +54,149 @@ const BuyTokenModal = ({ isOpen, onClose }) => {
     return () => clearInterval(timer)
   }, [isOpen, endTime])
 
-  const handleBuy = () => {
-    setShowSuccess(true)
+  const handleBuy = async () => {
+    if (!isConnected) {
+      setPurchaseError('Please connect your wallet first')
+      return
+    }
+
+    if (!amount || parseInt(amount) < minimum) {
+      setPurchaseError('Please enter a valid amount')
+      return
+    }
+
+    try {
+      setIsPurchasing(true)
+      setPurchaseError(null)
+
+      // Convert wallet client to ethers signer
+      const provider = new BrowserProvider(walletClient)
+      const signer = await provider.getSigner()
+
+      // Check if listing exists first
+      const marketplaceContract = await import('../../utils/contractUtils').then(m => m.getMarketplaceContract)
+      const marketplace = marketplaceContract(signer)
+      
+      const listingData = await marketplace.getListing(listingId || 1)
+      
+      console.log('Listing data:', listingData)
+      console.log('Listing structure:', {
+        seller: listingData[0] || listingData.seller,
+        propertyTokenId: listingData[1] || listingData.propertyTokenId,
+        pricePerShare: listingData[2] || listingData.pricePerShare,
+        sharesAvailable: listingData[3] || listingData.sharesAvailable,
+        paymentToken: listingData[4] || listingData.paymentToken,
+        isActive: listingData[5] || listingData.isActive
+      })
+      
+      // Handle both named and indexed return values
+      const isActive = listingData.isActive !== undefined ? listingData.isActive : listingData[5]
+      const sharesAvailable = listingData.sharesAvailable !== undefined ? listingData.sharesAvailable : listingData[3]
+      const listingPricePerShare = listingData.pricePerShare !== undefined ? listingData.pricePerShare : listingData[2]
+      
+      if (!isActive) {
+        setPurchaseError('This listing is no longer active')
+        setIsPurchasing(false)
+        return
+      }
+      
+      // Calculate shares based on listing's price per share, not property's
+      const actualPricePerShareInCAMP = parseFloat(ethers.formatEther(listingPricePerShare))
+      const shareCount = Math.floor(parseInt(amount) / actualPricePerShareInCAMP)
+      
+      console.log('Share calculation:', {
+        amount: parseInt(amount),
+        actualPricePerShareInCAMP,
+        shareCount,
+        sharesAvailable: sharesAvailable.toString()
+      })
+      
+      if (shareCount < 1) {
+        setPurchaseError(`Amount too small. Minimum needed: ${actualPricePerShareInCAMP} CAMP per share`)
+        setIsPurchasing(false)
+        return
+      }
+      
+      if (sharesAvailable < shareCount) {
+        setPurchaseError(`Only ${sharesAvailable} shares available`)
+        setIsPurchasing(false)
+        return
+      }
+      
+      // Recalculate total cost using listing's price
+      const totalCostInCAMP = shareCount * actualPricePerShareInCAMP
+      const totalCost = ethers.parseEther(totalCostInCAMP.toString())
+      
+      // Extract payment token from listing (handle both formats)
+      const paymentToken = listingData.paymentToken !== undefined ? listingData.paymentToken : listingData[4]
+      
+      // Check if user has sufficient balance
+      if (paymentToken === '0x0000000000000000000000000000000000000000' || paymentToken === ethers.ZeroAddress) {
+        // Native token payment - check native balance
+        const balance = await provider.getBalance(address)
+        console.log('Native token balance:', ethers.formatEther(balance), 'Required:', ethers.formatEther(totalCost))
+        
+        if (balance < totalCost) {
+          setPurchaseError(`Insufficient native token balance. You need ${ethers.formatEther(totalCost)} native tokens but only have ${ethers.formatEther(balance)}`)
+          setIsPurchasing(false)
+          return
+        }
+      }
+      
+      console.log('Payment details:', {
+        paymentToken,
+        totalCost: totalCost.toString(),
+        totalCostInCAMP: totalCostInCAMP,
+        shareCount,
+        listingId,
+        isNativePayment: paymentToken === '0x0000000000000000000000000000000000000000' || paymentToken === ethers.ZeroAddress
+      })
+
+      // Call smart contract to buy shares
+      const receipt = await buyShares(
+        signer,
+        listingId || 1,
+        shareCount,
+        totalCost,
+        paymentToken // Pass the payment token address from listing
+      )
+
+      setTxHash(receipt.hash || receipt.transactionHash)
+      setShowSuccess(true)
+    } catch (error) {
+      console.error('Purchase failed:', error)
+      
+      // Provide more helpful error messages
+      if (error.code === 'CALL_EXCEPTION') {
+        setPurchaseError('Transaction failed: The listing may not exist or you may not have sufficient balance')
+      } else if (error.code === 'INSUFFICIENT_FUNDS') {
+        setPurchaseError('Insufficient funds in your wallet')
+      } else if (error.code === 'ACTION_REJECTED') {
+        setPurchaseError('Transaction was rejected')
+      } else if (error.message?.includes('approve')) {
+        setPurchaseError('Token approval failed. Please try again.')
+      } else if (error.message?.includes('ERC20')) {
+        setPurchaseError('Insufficient CAMP token balance or approval failed')
+      } else {
+        setPurchaseError(error.shortMessage || error.message || 'Transaction failed. Please try again.')
+      }
+    } finally {
+      setIsPurchasing(false)
+    }
   }
 
   const handleSuccessClose = () => {
     setShowSuccess(false)
+    setAmount('')
+    setPurchaseError(null)
+    setTxHash(null)
     onClose()
   }
 
   if (!isOpen) return null
 
   if (showSuccess) {
-    return <PurchaseSuccessModal isOpen={showSuccess} onClose={handleSuccessClose} />
+    return <PurchaseSuccessModal isOpen={showSuccess} onClose={handleSuccessClose} txHash={txHash} />
   }
 
   return (
@@ -121,16 +261,37 @@ const BuyTokenModal = ({ isOpen, onClose }) => {
               onChange={(e) => setAmount(e.target.value)}
               placeholder="Enter amount"
               className="buy-token__input"
+              disabled={isPurchasing}
             />
             <div className="buy-token__receive">
-              <span>You receive: 1,000, 000 tokens</span>
-              <button className="buy-token__max">Max</button>
+              <span>You receive: {amount ? Math.floor(parseInt(amount) / (pricePerShare || 100)).toLocaleString() : '0'} shares</span>
+              <button className="buy-token__max" onClick={() => setAmount(maximum.toString())} disabled={isPurchasing}>
+                Max
+              </button>
             </div>
           </div>
 
+          {/* Error Message */}
+          {purchaseError && (
+            <div className="buy-token__error">
+              {purchaseError}
+            </div>
+          )}
+
+          {/* Wallet Warning */}
+          {!isConnected && (
+            <div className="buy-token__warning">
+              Please connect your wallet to purchase tokens
+            </div>
+          )}
+
           {/* Buy Button */}
-          <button className="buy-token__buy-btn" onClick={handleBuy}>
-            Buy now
+          <button 
+            className="buy-token__buy-btn" 
+            onClick={handleBuy}
+            disabled={isPurchasing || !isConnected}
+          >
+            {isPurchasing ? 'Processing...' : 'Buy now'}
           </button>
         </div>
       </div>

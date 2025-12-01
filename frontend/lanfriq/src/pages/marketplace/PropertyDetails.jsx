@@ -1,6 +1,9 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { ArrowLeft, User } from 'lucide-react'
+import { useAccount, usePublicClient } from 'wagmi'
+import { ethers } from 'ethers'
+import { getProperty, getActiveListings } from '../../utils/contractUtils'
 import BuyTokenModal from '../../components/modals/BuyTokenModal'
 import selectedImage1 from '../../assets/selectedmarketimage1.png'
 import selectedImage2 from '../../assets/selectedmarketimage2.png'
@@ -10,41 +13,133 @@ import './PropertyDetails.css'
 const PropertyDetails = () => {
   const { id } = useParams()
   const navigate = useNavigate()
+  const { address, isConnected } = useAccount()
+  const publicClient = usePublicClient()
   const [isBuyModalOpen, setIsBuyModalOpen] = useState(false)
   const [selectedImage, setSelectedImage] = useState(0)
+  const [loading, setLoading] = useState(true)
+  const [blockchainProperty, setBlockchainProperty] = useState(null)
+  const [listingId, setListingId] = useState(null)
+
+  // Calculate countdown from a target end date (e.g., 10 days from now)
+  const getInitialEndTime = () => {
+    const now = new Date()
+    return new Date(now.getTime() + (10 * 24 * 60 * 60 * 1000)) // 10 days from now
+  }
+
+  const [endTime] = useState(getInitialEndTime())
+  const [countdown, setCountdown] = useState({ days: 0, hours: 0, mins: 0, secs: 0 })
+
+  // Fetch property from blockchain
+  useEffect(() => {
+    const fetchBlockchainProperty = async () => {
+      if (!publicClient) return
+      
+      try {
+        setLoading(true)
+        // Try to fetch property with tokenId = id from URL
+        const provider = new ethers.JsonRpcProvider(publicClient.transport.url)
+        const propertyData = await getProperty(provider, id)
+        
+        console.log('Fetched property from blockchain:', propertyData)
+        
+        if (propertyData && propertyData.owner !== ethers.ZeroAddress) {
+          setBlockchainProperty({
+            owner: propertyData.owner,
+            propertyAddress: propertyData.propertyAddress,
+            valuation: ethers.formatEther(propertyData.valuation),
+            totalShares: propertyData.totalShares.toString(),
+            availableShares: propertyData.availableShares.toString(),
+            pricePerShare: ethers.formatEther(propertyData.pricePerShare),
+            isVerified: propertyData.isVerified
+          })
+          
+          // Find the listing ID for this property
+          const listings = await getActiveListings(provider, 50)
+          const propertyListing = listings.find(l => l.propertyTokenId.toString() === id)
+          if (propertyListing) {
+            setListingId(propertyListing.listingId)
+            console.log('Found listing ID:', propertyListing.listingId)
+          }
+        }
+      } catch (error) {
+        console.log('No blockchain property found, using demo data:', error.message)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchBlockchainProperty()
+  }, [id, publicClient])
+
+  useEffect(() => {
+    const calculateTimeLeft = () => {
+      const now = new Date().getTime()
+      const distance = endTime.getTime() - now
+
+      if (distance < 0) {
+        setCountdown({ days: 0, hours: 0, mins: 0, secs: 0 })
+        return
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24))
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+      const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+      const secs = Math.floor((distance % (1000 * 60)) / 1000)
+
+      setCountdown({ days, hours, mins, secs })
+    }
+
+    calculateTimeLeft() // Initial calculation
+    const timer = setInterval(calculateTimeLeft, 1000) // Update every second
+
+    return () => clearInterval(timer)
+  }, [endTime])
 
   const property = {
-    name: 'TokenArt Treasures',
-    value: '500.07 USDT',
-    days: 10,
-    hours: 2,
-    mins: 49,
-    secs: 15,
+    name: blockchainProperty ? `Property #${id}` : 'TokenArt Treasures',
+    value: blockchainProperty ? `${blockchainProperty.valuation} CAMP` : '500.07 USDT',
     images: [mainImage, selectedImage1, selectedImage2],
-    available: '220.07 USDT (48%)',
-    asset: 'Lanfriq Property Token',
+    available: blockchainProperty 
+      ? `${blockchainProperty.availableShares} of ${blockchainProperty.totalShares} shares (${Math.round((parseInt(blockchainProperty.availableShares) / parseInt(blockchainProperty.totalShares)) * 100)}%)`
+      : '220.07 USDT (48%)',
+    asset: blockchainProperty ? `Property Token #${id}` : 'Lanfriq Property Token',
     type: 'PT',
-    standard: 'Arbitrum - Layibet',
+    standard: 'Camp Network - Basecamp',
     bedrooms: 4,
     baths: 12,
-    totalVolume: '1,140.94D',
+    totalVolume: blockchainProperty ? `${blockchainProperty.valuation} CAMP` : '1,140.94D',
     dateCreated: 'July, 2024',
-    marketcap: '6k',
-    maxsupply: '10%',
+    marketcap: blockchainProperty ? `${(parseFloat(blockchainProperty.valuation) * 0.01).toFixed(2)}k` : '6k',
+    maxsupply: blockchainProperty ? blockchainProperty.totalShares : '10%',
+    pricePerShare: blockchainProperty ? blockchainProperty.pricePerShare : '500',
     nft: {
-      tokenName: 'Lanfriq Property Token',
-      tokenId: 'LNFQ NFT -1325',
-      description: 'Polygon',
-      smartContract: '0x1d5C...fd2c',
+      tokenName: blockchainProperty ? `Property Token #${id}` : 'Lanfriq Property Token',
+      tokenId: `LNFQ NFT-${id}`,
+      description: 'Camp Network',
+      smartContract: import.meta.env.VITE_PROPERTY_NFT_ADDRESS?.substring(0, 8) + '...' + import.meta.env.VITE_PROPERTY_NFT_ADDRESS?.substring(38) || '0x1d5C...fd2c',
       nftEnds: 'November 2, 2025',
-      valuation: '500,14k',
-      broker: 'Active'
+      valuation: blockchainProperty ? `${blockchainProperty.valuation} CAMP` : '500,14k',
+      broker: blockchainProperty?.isVerified ? 'Verified' : 'Pending',
+      owner: blockchainProperty?.owner
     },
     owners: [
-      { name: 'Afsal', wallet: '0x1d5K...1PGF', tokens: '12.3111DPT' },
-      { name: 'Romy', wallet: '0x1d5...1TKF', tokens: '17.3111DPT' },
-      { name: 'Koo', wallet: '0x1d5K...1PGF', tokens: '12.3111DPT' }
+      { name: 'Owner', wallet: blockchainProperty?.owner?.substring(0, 6) + '...' + blockchainProperty?.owner?.substring(38) || '0x1d5K...1PGF', tokens: `${blockchainProperty?.totalShares || '12.3111'} Shares` }
     ]
+  }
+
+  if (loading) {
+    return (
+      <div className="property-details">
+        <button className="property-details__back" onClick={() => navigate(-1)}>
+          <ArrowLeft size={20} />
+          Market / Property details
+        </button>
+        <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-secondary)' }}>
+          Loading property data...
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -221,19 +316,19 @@ const PropertyDetails = () => {
             {/* Countdown */}
             <div className="property-details__countdown">
               <div className="property-details__countdown-box">
-                <span className="property-details__countdown-value">{property.days}</span>
+                <span className="property-details__countdown-value">{countdown.days}</span>
                 <span className="property-details__countdown-label">Days</span>
               </div>
               <div className="property-details__countdown-box">
-                <span className="property-details__countdown-value">{property.hours}</span>
+                <span className="property-details__countdown-value">{countdown.hours}</span>
                 <span className="property-details__countdown-label">Hrs</span>
               </div>
               <div className="property-details__countdown-box">
-                <span className="property-details__countdown-value">{property.mins}</span>
+                <span className="property-details__countdown-value">{countdown.mins}</span>
                 <span className="property-details__countdown-label">Mins</span>
               </div>
               <div className="property-details__countdown-box">
-                <span className="property-details__countdown-value">{property.secs}</span>
+                <span className="property-details__countdown-value">{countdown.secs}</span>
                 <span className="property-details__countdown-label">Secs</span>
               </div>
             </div>
@@ -241,6 +336,14 @@ const PropertyDetails = () => {
             <div className="property-details__available">
               <span>Available</span>
               <span className="property-details__available-value">{property.available}</span>
+            </div>
+
+            <div className={`property-details__demo-notice ${blockchainProperty ? 'property-details__demo-notice--verified' : ''}`}>
+              <small>
+                {blockchainProperty 
+                  ? `✓ Real property from blockchain (Token ID: ${id})` 
+                  : 'Note: This is a demo property. Create real properties via the Tokenization Hub.'}
+              </small>
             </div>
 
             <button className="property-details__buy-btn" onClick={() => setIsBuyModalOpen(true)}>
@@ -290,7 +393,13 @@ const PropertyDetails = () => {
         </div>
       </div>
 
-      <BuyTokenModal isOpen={isBuyModalOpen} onClose={() => setIsBuyModalOpen(false)} />
+      <BuyTokenModal 
+        isOpen={isBuyModalOpen} 
+        onClose={() => setIsBuyModalOpen(false)}
+        propertyId={id}
+        pricePerShare={parseFloat(property.pricePerShare)}
+        listingId={listingId || id}
+      />
     </div>
   )
 }

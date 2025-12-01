@@ -147,6 +147,85 @@
   border-color: rgba(255, 255, 255, 0.2);
 }
 
+.purchase-success__tx-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  background-color: rgba(140, 192, 67, 0.1);
+  border: 1px solid rgba(140, 192, 67, 0.2);
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.purchase-success__tx-info span {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.purchase-success__tx-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #8cc043;
+  text-decoration: none;
+  font-family: monospace;
+  font-size: 0.875rem;
+  transition: color 0.2s ease;
+}
+
+.purchase-success__tx-link:hover {
+  color: #7ab032;
+}
+
+.purchase-success__error {
+  padding: 0.75rem 1rem;
+  background-color: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 8px;
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.purchase-success__nft-info {
+  padding: 1rem;
+  background-color: rgba(140, 192, 67, 0.1);
+  border: 1px solid rgba(140, 192, 67, 0.2);
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.purchase-success__nft-info p {
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  margin: 0.25rem 0;
+}
+
+.purchase-success__spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.purchase-success__mint-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 @media (max-width: 768px) {
   .purchase-success__header {
     padding: 1.25rem 1.5rem;

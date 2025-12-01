@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Eye, BarChart3, Coins, Plus } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 import { useCamp } from '../../context/CampContext'
 import { useAccount, useWalletClient } from 'wagmi'
 import { ethers } from 'ethers'
@@ -19,6 +20,7 @@ import TokenSetupScreen from '../../components/modals/TokenSetupScreen'
 import './TokenizationHub.css'
 
 const TokenizationHub = () => {
+  const navigate = useNavigate()
   const [showModal, setShowModal] = useState(false)
   const [showFeeModal, setShowFeeModal] = useState(false)
   const [showSubmittedModal, setShowSubmittedModal] = useState(false)
@@ -57,18 +59,21 @@ const TokenizationHub = () => {
   }
 
   const handlePayment = async (txHash) => {
-    console.log('Payment successful! Transaction hash:', txHash)
+    console.log('handlePayment called with txHash:', txHash)
     
     // Store transaction hash with property data
     if (propertyData) {
-      setPropertyData({
+      const updatedData = {
         ...propertyData,
         verificationTxHash: txHash,
         verificationPaid: true,
         verificationPaidAt: new Date().toISOString(),
-      })
+      }
+      setPropertyData(updatedData)
+      console.log('Property data updated:', updatedData)
     }
     
+    console.log('Closing fee modal, opening submitted modal')
     setShowFeeModal(false)
     setShowSubmittedModal(true)
   }
@@ -80,7 +85,7 @@ const TokenizationHub = () => {
 
   const handleBrowseMarket = () => {
     setShowSubmittedModal(false)
-    // Navigate to marketplace
+    navigate('/marketplace')
   }
 
   const handleGenerateSPV = () => {

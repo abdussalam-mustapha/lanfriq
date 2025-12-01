@@ -374,54 +374,7 @@ npx hardhat run scripts/deploy.js --network campTestnet
 
 ---
 
-## API Reference
 
-### Contract Utilities (`src/utils/contractUtils.js`)
-
-#### PropertyNFT Functions
-
-```javascript
-// Mint a new property NFT
-await mintPropertyNFT(signer, {
-  to: "0x...",
-  address: "123 Main St",
-  valuation: ethers.parseEther("500000"),
-  totalShares: 1000,
-  pricePerShare: ethers.parseEther("500"),
-  uri: "ipfs://ipnft/123"
-});
-
-// Get property details
-const property = await getPropertyDetails(provider, tokenId);
-// Returns: { owner, propertyAddress, valuation, totalShares, ... }
-
-// Transfer shares
-await transferPropertyShares(signer, tokenId, toAddress, shares);
-
-// Update property valuation
-await updatePropertyValuation(signer, tokenId, newValuation);
-```
-
-
-3. **Environment Variables**
-- Add all `VITE_*` variables in Vercel dashboard
-- Never expose private keys in frontend
-
-### Contract Deployment (Mainnet)
-
-**Before mainnet deployment:**
-- Complete security audit
-- Test thoroughly on testnet
-- Have emergency pause mechanisms
-- Set up multi-sig for admin functions
-
-```bash
-# Deploy to Camp Network Mainnet
-npx hardhat run scripts/deploy.js --network campMainnet
-
-# Verify contracts
-npx hardhat verify --network campMainnet <CONTRACT_ADDRESS>
-```
 
 ---
 
@@ -450,34 +403,6 @@ npx hardhat verify --network campMainnet <CONTRACT_ADDRESS>
 - Flexibility + security
 
 
-
-          
-
-#
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## Support & Contact
-
-- **Discord**: [Join Community](https://discord.gg/lanfriq)
-- **Twitter**: [@LanfriqHQ](https://twitter.com/lanfriqhq)
-- **Email**: support@lanfriq.com
-- **Documentation**: [docs.lanfriq.com](https://docs.lanfriq.com)
-
----
-
-## Acknowledgments
-
-- **Camp Network** - IP infrastructure and Origin SDK
-- **OpenZeppelin** - Secure smart contract libraries
-- **Hardhat** - Development environment
-- **RainbowKit** - Wallet connection UI
-
----
 
 **Built by the Lanfriq Team**
 

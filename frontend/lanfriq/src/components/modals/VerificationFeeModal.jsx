@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { X, CheckCircle, Loader2 } from 'lucide-react';
 import { useSendTransaction, useWaitForTransactionReceipt } from 'wagmi';
 import { parseEther } from 'viem';
@@ -19,13 +19,20 @@ import { parseEther } from 'viem';
  * @param {string} recipientAddress - Platform wallet address (from .env)
  */
 const VerificationFeeModal = ({ isOpen, onClose, onPayment, recipientAddress }) => {
-  const [txHash, setTxHash] = useState(null);
   const [error, setError] = useState(null);
 
-  const { sendTransaction, isPending: isSending } = useSendTransaction();
+  const { sendTransaction, data: hash, isPending: isSending } = useSendTransaction();
   const { isLoading: isConfirming, isSuccess } = useWaitForTransactionReceipt({
-    hash: txHash,
+    hash: hash,
   });
+
+  // Call onPayment when transaction is confirmed
+  useEffect(() => {
+    if (isSuccess && hash && onPayment) {
+      console.log('Payment confirmed! Hash:', hash);
+      onPayment(hash);
+    }
+  }, [isSuccess, hash, onPayment]);
 
   if (!isOpen) return null;
 
@@ -39,25 +46,29 @@ const VerificationFeeModal = ({ isOpen, onClose, onPayment, recipientAddress }) 
 
   const total = 0.5; // 0.5 CAMP verification fee
 
-  // Call onPayment when transaction is confirmed
-  if (isSuccess && txHash && onPayment) {
-    onPayment(txHash);
-    setTxHash(null);
-  }
-
   const handlePayment = async () => {
     try {
       setError(null);
       
-      // Default recipient is a platform wallet (should be configured in env)
-      const recipient = recipientAddress || '0x0000000000000000000000000000000000000000';
+      // Use recipient address or fallback to a valid address
+      // Note: In production, this should be the platform's treasury wallet
+      const recipient = recipientAddress && recipientAddress !== '0x0000000000000000000000000000000000000000' 
+        ? recipientAddress 
+        : null;
       
-      const hash = await sendTransaction({
+      if (!recipient) {
+        setError('Platform wallet address not configured. Please contact support.');
+        return;
+      }
+      
+      console.log('Sending payment to:', recipient);
+      
+      // sendTransaction in wagmi v2 - it will prompt the wallet
+      sendTransaction({
         to: recipient,
         value: parseEther('0.5'),
       });
       
-      setTxHash(hash);
     } catch (err) {
       console.error('Payment failed:', err);
       setError(err.message || 'Payment failed. Please try again.');
@@ -100,7 +111,7 @@ const VerificationFeeModal = ({ isOpen, onClose, onPayment, recipientAddress }) 
           </div>
         )}
 
-        {txHash && isConfirming && (
+        {hash && isConfirming && (
           <div className="verification-fee-modal__status">
             <Loader2 size={20} className="verification-fee-modal__spinner" />
             Confirming transaction...
