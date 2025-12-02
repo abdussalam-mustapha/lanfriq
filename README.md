@@ -197,60 +197,6 @@ export const campTestnet = defineChain({
        └─> Property available for trading
 ```
 
-// Dual minting process
-const handlePublish = async (tokenData) => {
-  setMintingProgress(0);
-  
-  // Step 1: Mint IPNFT (30-70% progress)
-  const ipnftTokenId = await mintPropertyIPNFT(
-    origin,
-    propertyFile,
-    metadata,
-    licenseTerms
-  );
-  
-  setMintingProgress(70);
-  
-  // Step 2: Mint PropertyNFT (70-100% progress)
-  const { tokenId: propertyNFTId } = await mintPropertyNFT(signer, {
-    to: address,
-    address: propertyData.location,
-    valuation: ethers.parseEther(valuation),
-    totalShares: parseInt(tokenSupply),
-    pricePerShare: ethers.parseEther(tokenPrice),
-    uri: `ipfs://ipnft/${ipnftTokenId}` // Cross-reference
-  });
-  
-  setMintingProgress(100);
-  // Returns both: ipnftTokenId + propertyNFTId
-};
-```
-
-
-
-## Getting Started
-
-### Prerequisites
-
-```bash
-# Required
-Node.js >= 18.x
-npm >= 9.x (or yarn/pnpm)
-MongoDB >= 5.0 (for backend)
-
-# Optional (for smart contract development)
-Hardhat ^2.22.0
-```
-
-
-```
-
-#### 5. Run Development Server
-```bash
-cd frontend/lanfriq
-npm run dev
-# Frontend: http://localhost:5173
-```
 
 ### Quick Start Guide
 
@@ -285,60 +231,6 @@ npm run dev
 
 ---
 
-## Smart Contract Development
-
-### Compile Contracts
-```bash
-cd contracts
-npm install
-npx hardhat compile
-```
-
-### Run Tests
-```bash
-npx hardhat test
-# Currently: 23/34 tests passing
-```
-
-### Deploy to Camp Testnet
-
-1. **Add Private Key to .env**
-```bash
-echo "PRIVATE_KEY=your_private_key_here" > .env
-```
-
-2. **Get Test CAMP**
-- Visit Camp Network Faucet
-- Fund deployer address
-
-3. **Deploy**
-```bash
-npx hardhat run scripts/deploy.js --network campTestnet
-```
-
-4. **Verify Deployment**
-- Check `deployments/campTestnet.json` for addresses
-- Update frontend `.env` with new addresses
-- Copy ABIs to `frontend/lanfriq/src/contracts/`
-
-### Deployment Output
-```json
-{
-  "network": "campTestnet",
-  "chainId": 123420001114,
-  "deployer": "0xd9217C46e6b6e3c4bd1c4c5f1d0ECEf1052f24ce",
-  "contracts": {
-    "PropertyNFT": "0x52719D5DA42707ec9ddD50A12A8Ec19bA3d1CF73",
-    "PropertyMarketplace": "0xBd84e89001247CeDa92fb7763f67192cDd5dA185"
-  },
-  "gasUsed": {
-    "PropertyNFT": "~0.05 CAMP",
-    "PropertyMarketplace": "~0.05 CAMP"
-  }
-}
-```
-
----
 
 
 
