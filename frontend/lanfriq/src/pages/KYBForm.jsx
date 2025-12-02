@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAccount } from 'wagmi'
 import { Globe, ArrowLeft, Upload, Plus, X } from 'lucide-react'
 import logo from '../assets/logo.png'
 import logoWhite from '../assets/lanfriqnavlogowhite.png'
@@ -9,6 +10,7 @@ import './KYBForm.css'
 const KYBForm = () => {
   const navigate = useNavigate()
   const { theme } = useTheme()
+  const { address } = useAccount()
   const [currentStep, setCurrentStep] = useState(1)
   const [directors, setDirectors] = useState([{
     id: 1,
@@ -102,6 +104,12 @@ const KYBForm = () => {
 
   const handleSubmit = () => {
     console.log('Submitting KYB:', { formData, directors })
+    
+    // Mark user as verified in localStorage
+    if (address) {
+      localStorage.setItem(`lanfriq-verified-${address}`, 'verified')
+    }
+    
     navigate('/kyc-success')
   }
 

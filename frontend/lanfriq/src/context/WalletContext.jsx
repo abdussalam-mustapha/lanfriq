@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect } from 'react'
+import { createContext, useContext, useEffect, useRef } from 'react'
 import { useAccount } from 'wagmi'
 import { useNavigate, useLocation } from 'react-router-dom'
 
@@ -16,14 +16,27 @@ export const WalletProvider = ({ children }) => {
   const { address, isConnected } = useAccount()
   const navigate = useNavigate()
   const location = useLocation()
+  const previousConnectionStatus = useRef(isConnected)
 
   useEffect(() => {
-    // Redirect to verify account page after wallet connection
-    if (isConnected && address && location.pathname === '/') {
-      // Check if user has been verified (you can add localStorage or API check here)
-      const hasVerified = localStorage.getItem(`lanfriq-verified-${address}`)
+    // Only redirect when connection status changes from disconnected to connected
+    const justConnected = isConnected && !previousConnectionStatus.current && address
+    
+    // Update the ref for next render
+    previousConnectionStatus.current = isConnected
+
+    if (justConnected) {
+      // Check if user has already verified or skipped verification
+      const verificationStatus = localStorage.getItem(`lanfriq-verified-${address}`)
       
-      if (!hasVerified) {
+      // Skip redirection if on verification page or already verified/skipped
+      const skipRedirect = location.pathname === '/verify-account' || 
+                          location.pathname === '/verification' ||
+                          verificationStatus === 'verified' ||
+                          verificationStatus === 'skipped'
+      
+      if (!skipRedirect) {
+        console.log('Wallet connected! Redirecting to verification page...')
         navigate('/verify-account')
       }
     }

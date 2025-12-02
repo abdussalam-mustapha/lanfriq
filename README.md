@@ -49,6 +49,18 @@ Lanfriq addresses these challenges by providing:
 - **Animations**: Framer Motion, AOS
 - **Icons**: Lucide React, Tabler Icons
 
+#### Backend
+- **Framework**: Node.js + Express.js
+- **Database**: MongoDB + Mongoose ODM
+- **Authentication**: JWT + Wallet Signature Verification
+- **Blockchain Integration**: Ethers.js ^6.15.0
+- **File Handling**: Multer, AWS S3/IPFS ready
+- **Document Generation**: PDFKit (SPV documents)
+- **Email**: Nodemailer
+- **Logging**: Winston
+- **Security**: Helmet, CORS, Rate Limiting, Input Sanitization
+- **API Version**: v1 (RESTful)
+
 #### Smart Contracts (Deployed)
 - **Solidity**: ^0.8.20
 - **Development**: Hardhat ^2.22.0
@@ -224,59 +236,13 @@ const handlePublish = async (tokenData) => {
 # Required
 Node.js >= 18.x
 npm >= 9.x (or yarn/pnpm)
+MongoDB >= 5.0 (for backend)
 
 # Optional (for smart contract development)
 Hardhat ^2.22.0
 ```
 
-### Installation
 
-#### 1. Clone the Repository
-```bash
-git clone <repository-url>
-cd lanfriq
-```
-
-#### 2. Install Frontend Dependencies
-```bash
-cd frontend/lanfriq
-npm install
-```
-
-#### 3. Install Contract Dependencies
-```bash
-cd ../../contracts
-npm install
-```
-
-#### 4. Configure Environment Variables
-
-**Frontend (.env)**
-```env
-# Camp Network Configuration
-VITE_CAMP_CLIENT_ID=fce77d7a-8085-47ca-adff-306a933e76aa
-VITE_CAMP_API_KEY=4f1a2c9c-008e-4a2e-8712-055fa04f9ffa
-VITE_CAMP_ENVIRONMENT=DEVELOPMENT
-
-# Smart Contract Addresses (Camp Testnet)
-VITE_PROPERTY_NFT_ADDRESS=0x52719D5DA42707ec9ddD50A12A8Ec19bA3d1CF73
-VITE_MARKETPLACE_ADDRESS=0xBd84e89001247CeDa92fb7763f67192cDd5dA185
-
-# Network Configuration
-VITE_CHAIN_ID=123420001114
-VITE_RPC_URL=https://rpc.basecamp.t.raas.gelato.cloud
-
-# WalletConnect Project ID (for RainbowKit)
-VITE_WALLETCONNECT_PROJECT_ID=<your-project-id>
-```
-
-**Contracts (.env)**
-```env
-# Deployer Private Key (NEVER commit this!)
-PRIVATE_KEY=<your-private-key>
-
-# Camp Network Testnet RPC
-CAMP_TESTNET_RPC=https://rpc.basecamp.t.raas.gelato.cloud
 ```
 
 #### 5. Run Development Server

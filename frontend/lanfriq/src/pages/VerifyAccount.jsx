@@ -13,6 +13,10 @@ const VerifyAccount = () => {
   const { theme } = useTheme()
 
   const handleGetVerified = () => {
+    // Mark as starting verification process
+    if (address) {
+      localStorage.setItem(`lanfriq-verified-${address}`, 'in-progress')
+    }
     // Navigate to verification flow
     navigate('/verification')
   }
